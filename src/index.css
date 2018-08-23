@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.characterSelector{
+  display: inline-block;
+  float: left;
+  margin-left: 50px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.characterSearch{
+  position: absolute;
+  left: 50px;
+  top: 430px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+
+
+.creatorSearch{
+  position: absolute;
+  left: 50px;
+  top: 680px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.titleSearch{
+  position: absolute;
+  left: 50px;
+  top: 930px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.resultsDisplay{
+  position: absolute;
+  right: 2px;
+  top: 100px;
+  height: 640px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding: 15px;
+  width: 50%;
+  overflow: auto;
+}
+
+.welcomeDisplay{
+  position: absolute;
+  top: 100px;
+  left: 10px;
+  height: 640px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding: 15px;
+  width: 40%;
+  overflow: auto;
+}
+
+.welcomeDisplay p{
+    font-size: 0.8em;
+}
+
+.frontCover img{
+  height: 600px;
+}
+
+.detailsBox{
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+}
