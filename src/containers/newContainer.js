@@ -65,7 +65,7 @@ search_for_character(character){
   this.marvel.characters.findByName(character)
   .then(function(res) {
     this.setState({character: res.data[0]});
-    console.log(this.state.character[0]);
+    console.log(res.data[0]);
     // console.log("Search for character results", res.data[0]);
     // return this.marvel.characters.comics(res.data[0].id);
   }.bind(this))

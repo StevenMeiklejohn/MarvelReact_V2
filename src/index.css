@@ -100,3 +100,19 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
 }
+
+.detailsBox a{
+  font-family: 'Marvel', sans-serif;
+  font-size: 30px;
+  color: white;
+  display: block;
+  text-align: center;
+  line-height: 40px;
+  width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.detailsBox a:hover {
+  background-color: #005f5f;
+
+}
