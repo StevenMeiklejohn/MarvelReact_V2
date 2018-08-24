@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from './../components/navbar'
-import Home from './../components/home'
-import Login from './../components/login'
-import Account from './../components/account'
-import New from './../components/new'
-import Recommendations from './../components/recommendations'
+import Home from './../components/home/home'
+import Login from './../components/login/login'
+import Account from './../components/account/account'
+import New from './newContainer'
+import Recommendations from './../components/recommendations/recommendations'
 const api = require('marvel-api');
 
 

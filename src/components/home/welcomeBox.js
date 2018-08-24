@@ -9,6 +9,7 @@ class WelcomeBox extends React.Component {
         <p>Do you use Marvel Unlimited?</p>
         <p>Ever find yourself reading a great comic issue or brilliant arc and wish you could easily recommend it to your friends?</p>
         <p>Now you can! Simply create a free account and use our comic finder to locate and send recommendations to your friends!</p>
+        <p>Click 'New' and make a recommendation now!</p>
       </div>
     )
   }

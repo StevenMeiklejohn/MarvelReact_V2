@@ -1,8 +1,8 @@
 import React from 'react'
 import MD5 from 'crypto-js/md5'
-import DetailsBox from './../components/detailsBox'
-import FrontCover from './../components/frontCover'
-import WelcomeBox from './../components/welcomeBox'
+import DetailsBox from './detailsBox'
+import FrontCover from './frontCover'
+import WelcomeBox from './welcomeBox'
 
 
 const api = require('marvel-api');
@@ -11,13 +11,9 @@ class Home extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      comic: null,
       frontCover: null,
       title: null,
-      creators: [],
-      characters:[],
-      character: null,
-      display: "random_comic"
+      creators: []
     }
     this.getRandomInt = this.getRandomInt.bind(this);
     this.md5 = this.md5.bind(this);
