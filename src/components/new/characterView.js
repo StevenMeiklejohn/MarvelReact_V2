@@ -13,9 +13,18 @@ class CharacterView extends React.Component {
     // });
 
     if(this.props.character){
+      console.log(this.props.character);
     return(
       <div className="characterView">
         <p>Character Details</p>
+        <p>Name: {this.props.character.name}</p>
+        <div>
+          <img className="characterImage" src={this.props.character.thumbnail.path + ".jpg"} alt="https://get.whotrades.com/u3/photo843E/20389222600-0/big.jpeg"/>
+        </div>
+        <div className="detailsBox">
+      <p>Description:</p>
+      <p>{this.props.character.description}</p>
+    </div>
       </div>
     )
   } else {

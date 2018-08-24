@@ -94,6 +94,15 @@ a.active {
     justify-content: center;
   }
 
+  .characterImage {
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid white;
+    border-radius: 15px;
+  }
+
 
 
   #logo{
