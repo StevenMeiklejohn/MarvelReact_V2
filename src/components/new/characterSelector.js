@@ -15,6 +15,7 @@ class CharacterSelector extends React.Component{
       let flattened = _.flattenDeep(object);
       // console.log("flattened", flattened);
   }
+  
 
 
   render(){

@@ -2,6 +2,7 @@ import React from 'react';
 import MD5 from 'crypto-js/md5'
 import CharacterSelector from './../components/new/characterSelector'
 import CharacterView from './../components/new/characterView'
+import EventSelector from './../components/new/eventSelector'
 const api = require('marvel-api');
 
 class New extends React.Component{
@@ -10,7 +11,8 @@ class New extends React.Component{
     super(props);
     this.state = {
       characters:[],
-      character: null
+      character: null,
+      events:[]
     }
     this.get_characters = this.get_characters.bind(this);
     this.get_all_characters = this.get_all_characters.bind(this);
@@ -44,9 +46,7 @@ async get_all_characters() {
     const getCharacterPromise = this.get_characters(100, i)
     promises.push(getCharacterPromise)
   }
-  this.setState({fetching_characters: false});
   await Promise.all(promises)
-
 }
 
 get_characters(num_to_get, index_offset){
@@ -64,20 +64,42 @@ get_characters(num_to_get, index_offset){
 search_for_character(character){
   this.marvel.characters.findByName(character)
   .then(function(res) {
-    this.setState({character: res.data[0]});
+    this.setState({character: res.data[0]}, this.get_all_events);
     console.log(res.data[0]);
-    // console.log("Search for character results", res.data[0]);
-    // return this.marvel.characters.comics(res.data[0].id);
   }.bind(this))
   .fail(console.error)
   .done();
 }
 
+async get_all_events() {
+  console.log(this.state);
+  const promises = [];
+  for(var i = 0; i < 1500; i+=100){
+    const getEventPromise = this.get_events(this.state.character.id, 100, i)
+    promises.push(getEventPromise)
+  }
+  // this.setState({fetching_events: false});
+  await Promise.all(promises)
+}
+
+get_events(id, num_to_get, index_offset){
+  let events = this.state.events;
+  this.marvel.characters.events(id, num_to_get, index_offset)
+  .then(function(res){
+    events.push(res.data);
+    console.log(res.data);
+    this.setState({events: events});
+  }.bind(this))
+  .fail(console.error)
+  .done();
+}
+
+
+
 handleCharacterSelector(event){
   console.log(event.target.value);
   console.log(event.target.key);
-  this.search_for_character(event.target.value);
-
+  this.search_for_character(event.target.value)
 }
 
 
@@ -89,6 +111,12 @@ handleCharacterSelector(event){
         <CharacterSelector
           characters={this.state.characters}
           onChange={this.handleCharacterSelector}/>
+      </div>
+      <div>
+        <EventSelector
+          events={this.state.events}
+          // onChange={this.handleEventSelector}/>
+        />
       </div>
       <div>
         <CharacterView

@@ -9,6 +9,7 @@ body {
   float: left;
   margin-left: 50px;
   height: 200px;
+
   border: 5px solid white;
   border-radius: 25px;
   padding-top: 15px;
@@ -25,6 +26,20 @@ body {
   border: 5px solid white;
   border-radius: 25px;
   padding: 15px;
+}
+
+.eventSelector{
+  position: absolute;
+  left: 50px;
+  top: 480px;
+  height: 200px;
+  width: 340px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 15px;
 }
 
 
