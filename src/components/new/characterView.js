@@ -47,9 +47,9 @@ class CharacterView extends React.Component {
     )
   }
 
-  if(this.props.eventComics && this.props.character){
+  if(this.props.eventComics){
+    console.log(this.props.eventComics)
     return(
-    // console.log(this.props.eventComics)
     <div className="characterView">
       <p>Comics received</p>
     </div>
