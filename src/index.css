@@ -30,8 +30,23 @@ body {
 
 .eventSelector{
   position: absolute;
+  float: left;
   left: 50px;
   top: 480px;
+  height: 200px;
+  width: 340px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.titleSelector{
+  position: absolute;
+  left: 50px;
+  top: 580px;
   height: 200px;
   width: 340px;
   border: 5px solid white;

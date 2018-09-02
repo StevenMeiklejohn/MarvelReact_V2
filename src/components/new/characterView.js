@@ -19,8 +19,10 @@ class CharacterView extends React.Component {
     //   );
     // });
 
+
+
     if(this.props.character){
-      console.log(this.props.character);
+      // console.log(this.props.character);
       return(
         <div className="characterView">
           <p>Character Details</p>
@@ -43,10 +45,19 @@ class CharacterView extends React.Component {
         </div>
       </div>
     )
-  } else {
+  }
+
+  if(this.props.eventComics && this.props.character){
+    return(
+    // console.log(this.props.eventComics)
+    <div className="characterView">
+      <p>Comics received</p>
+    </div>
+  )}
+   else {
     return(
       <div className="characterView">
-        <p class="animated infinite lightSpeedIn delay-2s">Fetching Character Info</p>
+        <p class="animated infinite lightSpeedIn delay-2s">Fetching.....</p>
       </div>
     )
   }

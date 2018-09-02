@@ -11,11 +11,12 @@ class FrontCover extends React.Component{
       <p>Random Suggestion:</p>
     </div>
       <div className="image">
-        <img src={this.props.cover + ".jpg"} alt="https://get.whotrades.com/u3/photo843E/20389222600-0/big.jpeg"/>
+        <img src={this.props.cover + ".jpg"} />
       </div>
     </React.Fragment>
     )
   }else{
+    this.props.getCover
     return(
     <React.Fragment>
       <p class="animated infinite lightSpeedIn delay-2s">Fetching..</p>

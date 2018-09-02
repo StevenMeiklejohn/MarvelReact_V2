@@ -12,12 +12,16 @@ class New extends React.Component{
     this.state = {
       characters:[],
       character: null,
-      events:[]
+      events:[],
+      event: null,
+      eventComics: []
     }
     this.get_characters = this.get_characters.bind(this);
     this.get_all_characters = this.get_all_characters.bind(this);
     this.search_for_character = this.search_for_character.bind(this);
     this.handleCharacterSelector = this.handleCharacterSelector.bind(this);
+    this.handleEventSelector = this.handleEventSelector.bind(this);
+    this.getIssuesInEvent = this.getIssuesInEvent.bind(this);
 
     this.marvel = api.createClient({
       publicKey: "1a11ffc2c79394bdd4e7a7b8d97c43a9",
@@ -65,7 +69,7 @@ search_for_character(character){
   this.marvel.characters.findByName(character)
   .then(function(res) {
     this.setState({character: res.data[0]}, this.get_all_events);
-    console.log(res.data[0]);
+    // console.log(res.data[0]);
   }.bind(this))
   .fail(console.error)
   .done();
@@ -74,7 +78,7 @@ search_for_character(character){
 async get_all_events() {
   console.log(this.state);
   const promises = [];
-  for(var i = 0; i < 1500; i+=100){
+  for(var i = 0; i < 500; i+=100){
     const getEventPromise = this.get_events(this.state.character.id, 100, i)
     promises.push(getEventPromise)
   }
@@ -87,8 +91,22 @@ get_events(id, num_to_get, index_offset){
   this.marvel.characters.events(id, num_to_get, index_offset)
   .then(function(res){
     events.push(res.data);
-    console.log(res.data);
+    // console.log(res.data);
     this.setState({events: events});
+  }.bind(this))
+  .fail(console.error)
+  .done();
+}
+
+getIssuesInEvent(event_id, num_to_get, index_offset){
+  let comics = this.state.eventComics;
+  console.log(event_id);
+  this.marvel.events.comics(event_id, num_to_get, index_offset)
+  .then(function(res){
+    comics.push(res.data);
+    console.log(res.data);
+    this.setState({eventComics: comics});
+    this.setState({character: null});
   }.bind(this))
   .fail(console.error)
   .done();
@@ -97,17 +115,22 @@ get_events(id, num_to_get, index_offset){
 
 
 handleCharacterSelector(event){
-  console.log(event.target.value);
-  console.log(event.target.key);
+  // console.log(event.target.value);
+  // console.log(event.target.key);
   this.search_for_character(event.target.value)
+}
+
+handleEventSelector(event){
+  console.log(event.target.value);
+  this.getIssuesInEvent(event.target.value, 100, 0)
 }
 
 
   render(){
     return(
       <React.Fragment>
-      <div>
         <p>Create a new recommendation using the tools below!</p>
+      <div>
         <CharacterSelector
           characters={this.state.characters}
           onChange={this.handleCharacterSelector}/>
@@ -115,12 +138,12 @@ handleCharacterSelector(event){
       <div>
         <EventSelector
           events={this.state.events}
-          // onChange={this.handleEventSelector}/>
-        />
+          onChange={this.handleEventSelector}/>
       </div>
       <div>
         <CharacterView
-          character={this.state.character}/>
+          character={this.state.character}
+          eventComics={this.state.eventComics}/>
       </div>
     </React.Fragment>
     )

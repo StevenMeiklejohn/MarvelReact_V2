@@ -82,7 +82,8 @@ class Home extends React.Component{
         <WelcomeBox />
       <div className="resultsDisplay">
         <div className="frontCover">
-          <FrontCover cover={this.state.frontCover}/>
+          <FrontCover cover={this.state.frontCover}
+                      getCover={this.getRandomComic}/>
         </div>
 
         <div className="detailsBox">

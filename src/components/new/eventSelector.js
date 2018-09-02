@@ -26,27 +26,27 @@ class EventSelector extends React.Component{
       )
     }
     let events = this.props.events;
-    console.log("Event selector events props", events);
+    // console.log("Event selector events props", events);
     this.flattenEventsObject(events);
-    console.log("Event selector events props post flatten", events);
+    // console.log("Event selector events props post flatten", events);
     let flatEvents = [];
     let orderedEvents = [];
     let ordered_options = [];
     if(events){
       events.forEach(function(element) {
         element.forEach(function(item){
-          console.log(item);
+          // console.log(item);
             flatEvents.push(item)
         })
       });
-      console.log(flatEvents);
+      // console.log(flatEvents);
       orderedEvents = _.sortBy(flatEvents, [function(o) { return o.title; }]);
 
       orderedEvents.forEach(function(item){
-        ordered_options.push(<option key={item.id} value={item.title}>{item.title}</option>)
+        ordered_options.push(<option key={item.id} value={item.id}>{item.title}</option>)
       })
       this.sorted_options = ordered_options
-      console.log("sorted options", this.sorted_options);
+      // console.log("sorted options", this.sorted_options);
     }
 
     return(
