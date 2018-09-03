@@ -1,4 +1,5 @@
 import React from 'react';
+import Gallery from './gallery'
 
 
 class CharacterView extends React.Component {
@@ -47,11 +48,21 @@ class CharacterView extends React.Component {
     )
   }
 
-  if(this.props.eventComics){
-    console.log(this.props.eventComics)
+  if(this.props.eventComics && this.props.eventComics.length > 0){
+    console.log(this.props.eventComics);
+    let latestIndex = this.props.eventComics.length - 1;
+    console.log(this.props.eventComics[latestIndex])
+    let incomingThumbnails = this.props.eventComics[latestIndex];
+    let imageArray = [];
+    incomingThumbnails.forEach(function(element){
+      // element.forEach(function(item){
+        imageArray.push(element.thumbnail.path + ".jpg");
+      // })
+    })
+    console.log(imageArray);
     return(
     <div className="characterView">
-      <p>Comics received</p>
+      <Gallery imageUrls={imageArray}/>
     </div>
   )}
    else {
