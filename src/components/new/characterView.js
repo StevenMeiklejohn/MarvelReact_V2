@@ -35,9 +35,6 @@ class CharacterView extends React.Component {
             <p>Description:</p>
             <p className="detailsBox">{this.props.character.description}</p>
           </div>
-          {/* <div className="issueGrid">
-
-        </div> */}
         <div className="detailsBox">
           <p>Links:</p>
           <a href={this.props.character.urls[0].url}>Detailed Description</a>

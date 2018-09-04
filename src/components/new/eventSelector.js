@@ -21,10 +21,14 @@ class EventSelector extends React.Component{
     if(this.props.events.length == 0){
       return(
         <div>
-          {/* <p class="animated infinite lightSpeedIn delay-2s">No events</p> */}
+          <div className="eventSelector">
+            <p class="animated infinite lightSpeedIn delay-2s">Fetching Related</p>
+            <p class="animated infinite lightSpeedIn delay-2s">Events...</p>
+          </div>
         </div>
       )
     }
+
     let events = this.props.events;
     // console.log("Event selector events props", events);
     this.flattenEventsObject(events);
