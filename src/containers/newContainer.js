@@ -76,6 +76,7 @@ search_for_character(character){
 }
 
 async get_all_events() {
+
 this.setState({events: []}, this.get_events(this.state.character.id, 50, 0));
 ;
   }
@@ -109,6 +110,8 @@ getIssuesInEvent(event_id, num_to_get, index_offset){
 
 
 
+
+
 handleCharacterSelector(event){
   // console.log(event.target.value);
   // console.log(event.target.key);
@@ -117,7 +120,9 @@ handleCharacterSelector(event){
 
 handleEventSelector(event){
   console.log(event.target.value);
-  this.getIssuesInEvent(event.target.value, 100, 0)
+  this.setState({eventComics: []});
+  this.setState({character: null}, this.getIssuesInEvent(event.target.value, 100, 0))
+
 }
 
 
