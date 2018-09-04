@@ -12,11 +12,9 @@ class Gallery extends React.Component {
   render() {
     if(this.props.imageUrls.length > 0){
     return (
-      <div className="gallery">
-        <div className="images">
+        <div className="thumbnails">
           {this.props.imageUrls.map(imageUrl => this.renderImage(imageUrl))}
         </div>
-      </div>
     );
   }
 }

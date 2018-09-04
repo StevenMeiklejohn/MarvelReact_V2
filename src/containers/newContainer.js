@@ -81,19 +81,6 @@ this.setState({events: []}, this.get_events(this.state.character.id, 50, 0));
   }
 
 
-
-
-// async get_all_events() {
-//   console.log(this.state);
-//   const promises = [];
-//   for(var i = 0; i < 500; i+=100){
-//     const getEventPromise = this.get_events(this.state.character.id, 100, i)
-//     promises.push(getEventPromise)
-//   }
-//   // this.setState({fetching_events: false});
-//   await Promise.all(promises)
-// }
-
 get_events(id, num_to_get, index_offset){
   let events = this.state.events;
   this.marvel.characters.events(id, num_to_get, index_offset)
