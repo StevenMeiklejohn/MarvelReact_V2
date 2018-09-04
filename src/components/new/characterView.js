@@ -46,9 +46,9 @@ class CharacterView extends React.Component {
   }
 
   if(this.props.eventComics && this.props.eventComics.length > 0){
-    console.log(this.props.eventComics);
+    // console.log(this.props.eventComics);
     let latestIndex = this.props.eventComics.length - 1;
-    console.log(this.props.eventComics[latestIndex])
+    // console.log(this.props.eventComics[latestIndex])
     let incomingThumbnails = this.props.eventComics[latestIndex];
     let imageArray = [];
     incomingThumbnails.forEach(function(element){
@@ -56,10 +56,11 @@ class CharacterView extends React.Component {
         imageArray.push(element.thumbnail.path + ".jpg");
       // })
     })
-    console.log(imageArray);
+    // console.log(imageArray);
     return(
     <div className="characterView">
-      <Gallery imageUrls={imageArray}/>
+      <Gallery imageUrls={imageArray}
+                detailsArray={incomingThumbnails}/>
     </div>
   )}
    else {
