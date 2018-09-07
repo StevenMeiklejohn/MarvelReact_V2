@@ -5,7 +5,7 @@ import Home from './../components/home/home'
 import Login from './../components/login/login'
 import Account from './../components/account/account'
 import New from './newContainer'
-import Recommendations from './../components/recommendations/recommendations'
+import Recommendations from './recommendationsContainer'
 const api = require('marvel-api');
 
 

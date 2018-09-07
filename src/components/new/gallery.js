@@ -1,18 +1,22 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class Gallery extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      comic: null
+    }
+  }
   renderImage(imageUrl) {
-    // return (
-    //   <div>
-    //     <img src={imageUrl.thumbnail.path + ".jpg"} />
-    //   </div>
-    // );
     return (
       <div class="hovereffect">
         <img class="img-responsive" src={imageUrl.thumbnail.path + ".jpg"}/>
           <div class="overlay">
             <h2>{imageUrl.title}</h2>
-            <a class="info" href="#">Select</a>
+            <button class="info" href="#">Select</button>
+
           </div>
         </div>
     )
@@ -29,7 +33,5 @@ class Gallery extends React.Component {
   }
 }
 }
-// Gallery.propTypes = {
-//   imageUrls: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
-// };
+
 export default Gallery;

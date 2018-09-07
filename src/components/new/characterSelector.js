@@ -1,5 +1,6 @@
 import React from 'react';
 const _ = require('lodash');
+const writeFileP = require("write-file-p");
 
 
 class CharacterSelector extends React.Component{
@@ -15,7 +16,7 @@ class CharacterSelector extends React.Component{
       let flattened = _.flattenDeep(object);
       // console.log("flattened", flattened);
   }
-  
+
 
 
   render(){
@@ -28,6 +29,7 @@ class CharacterSelector extends React.Component{
       )
     }
     let characters = this.props.characters;
+
     // console.log(characters);
     // console.log(typeof characters);
     this.flattenCharactersObject(characters);
