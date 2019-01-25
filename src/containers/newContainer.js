@@ -3,7 +3,8 @@ import MD5 from 'crypto-js/md5'
 import CharacterSelector from './../components/new/characterSelector'
 import CharacterView from './../components/new/characterView'
 import EventSelector from './../components/new/eventSelector'
-const writeFileP = require("write-file-p");
+// const writeFileP = require("write-file-p");
+
 const api = require('marvel-api');
 
 class New extends React.Component{
@@ -33,7 +34,20 @@ class New extends React.Component{
 
   componentDidMount(){
     this.get_all_characters();
+
   }
+
+
+//   get_all_characters_from_db(){
+//     let orderedChars = [];
+//     let request = new Request();
+//     request.get('/api/marvelCharacters?page=1&size=1500').then((data) => {
+//       orderedChars = _.sortBy(data._embedded, [function(o) { return o.name; }]);
+//       console.log("data from db", orderedChars);
+//       // this.setState({pirates: data._embedded.pirates})
+// })
+
+
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -52,8 +66,11 @@ class New extends React.Component{
       const getCharacterPromise = this.get_characters(100, i)
       promises.push(getCharacterPromise)
     }
-    await Promise.all(promises)
+    await Promise.all(promises);
   }
+
+
+
 
   get_characters(num_to_get, index_offset){
     let chars = this.state.characters;
@@ -61,7 +78,7 @@ class New extends React.Component{
     .then(function(res){
       chars.push(res.data);
       this.setState({characters: chars});
-      // console.log(this.state.characters);
+      console.log(this.state.characters);
     }.bind(this))
     .fail(console.error)
     .done();
@@ -111,9 +128,6 @@ class New extends React.Component{
   }
 
 
-
-
-
   handleCharacterSelector(event){
     // console.log(event.target.value);
     // console.log(event.target.key);
@@ -126,7 +140,6 @@ class New extends React.Component{
     this.setState({character: null}, this.getIssuesInEvent(event.target.value, 100, 0))
 
   }
-
 
   render(){
     return(

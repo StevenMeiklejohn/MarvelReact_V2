@@ -1,6 +1,7 @@
 import React from 'react';
+// import Request from './../../helpers/request'
 const _ = require('lodash');
-const writeFileP = require("write-file-p");
+// const writeFileP = require("write-file-p");
 
 
 class CharacterSelector extends React.Component{
@@ -9,12 +10,11 @@ class CharacterSelector extends React.Component{
   super(props);
   this.flattenCharactersObject = this.flattenCharactersObject.bind(this);
   this.sorted_options = [];
+
   }
 
   flattenCharactersObject(object){
-      // console.log("pre flattened", object);
       let flattened = _.flattenDeep(object);
-      // console.log("flattened", flattened);
   }
 
 
@@ -29,9 +29,10 @@ class CharacterSelector extends React.Component{
       )
     }
     let characters = this.props.characters;
+    console.log("Character props", this.props.characters);
 
-    // console.log(characters);
-    // console.log(typeof characters);
+
+
     this.flattenCharactersObject(characters);
     // console.log(characters);
     // console.log(characters.length);
@@ -45,9 +46,28 @@ class CharacterSelector extends React.Component{
         })
       });
       orderedChars = _.sortBy(flatChars, [function(o) { return o.name; }]);
+      console.log("ordered characters", orderedChars);
+      console.log("ordered characters type", typeof(orderedChars));
+      console.log("ordered characters index 20", orderedChars[20]);
+      console.log("ordered characters index 21", orderedChars[21]);
+      console.log("ordered characters index 22", orderedChars[22]);
+
+      console.log("ordered characters length", orderedChars.length);
+
 
       orderedChars.forEach(function(item){
+        console.log("Drop down item", item);
+        let itemForDb = {
+          "marvelId": item.id,
+          "name": item.name,
+          "description": item.description,
+          "modified": item.modified,
+          "resourceURI": item.resourceURI
+        }
+        console.log("Item for db", itemForDb);
         ordered_options.push(<option key={item.id} value={item.name}>{item.name}</option>)
+        // const request = new Request();
+        // request.post('/api/marvelCharacters', itemForDb);
       })
       this.sorted_options = ordered_options
     }

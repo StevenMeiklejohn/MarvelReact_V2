@@ -88,6 +88,14 @@ a.active {
     text-align: center;
   }
 
+  h5{
+    text-align: center;
+  }
+
+  h6{
+    text-align: center;
+  }
+
   .image {
     display: flex;
     align-items: center;
@@ -103,6 +111,55 @@ a.active {
     border-radius: 15px;
   }
 
+  .singleComicCoverImageDiv{
+    position: absolute;
+    top: 12%;
+    left: 35%;
+    height: 650px;
+    width:  420px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid white;
+    border-radius: 15px;
+    background-color: white;
+  }
+
+  .singleComicCoverImage{
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .singleComicDetails{
+    position: absolute;
+    top: 12%;
+    left: 5%;
+    height: 650px;
+    width:  420px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid white;
+    border-radius: 15px;
+    overflow: auto;
+  }
+
+  .creatorDetail{
+    margin-top: -10px;
+  }
+
+  .my_wrapper{
+    background-color: white;
+  }
+
+  .my_wrapper:hover img{
+    opacity: 0.4;
+  }
+
+
+
 
 
   #logo{
@@ -113,3 +170,19 @@ a.active {
   #button-wrapper {
     text-align:center;
   }
+
+  /* Style inputs */
+  input[type=text], select {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

@@ -13,11 +13,14 @@ class Home extends React.Component{
     this.state = {
       frontCover: null,
       title: null,
-      creators: []
+      creators: [],
+      id: null,
+      link: null
     }
     this.getRandomInt = this.getRandomInt.bind(this);
     this.md5 = this.md5.bind(this);
     this.getRandomComic = this.getRandomComic.bind(this);
+    this.onPress = this.onPress.bind(this);
 
 
 
@@ -41,6 +44,12 @@ class Home extends React.Component{
     // return CryptoJS.MD5(value).toString();
     return MD5(value).toString();
   };
+
+  onPress(){
+    console.log("onPress triggered");
+    const id = this.state.id;
+    this.setState({link: id});
+  }
 
   getRandomComic(){
     // keys for API
@@ -67,6 +76,7 @@ class Home extends React.Component{
         this.setState({comic: marvel.data});
         this.setState({frontCover: marvel.data.results[0].thumbnail.path});
         this.setState({title: marvel.data.results[0].title})
+        this.setState({id: marvel.data.results[0].id})
         var creatorArray = marvel.data.results[0].creators.items;
         var newArray = this.state.creators.concat(creatorArray);
         this.setState({creators: newArray});
@@ -83,7 +93,10 @@ class Home extends React.Component{
       <div className="resultsDisplay">
         <div className="frontCover">
           <FrontCover cover={this.state.frontCover}
-                      getCover={this.getRandomComic}/>
+                      getCover={this.getRandomComic}
+                      id={this.state.id}
+                      onPress={this.onPress}
+                      link={this.state.link}/>
         </div>
 
         <div className="detailsBox">

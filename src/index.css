@@ -276,7 +276,7 @@ transition-delay:.2s;
 }
 
 button{
-  color: #0099CC;
+
   background: transparent;
   border: 2px solid #0099CC;
   border-radius: 6px;
@@ -296,8 +296,7 @@ button{
 }
 
 button {
-
-      color: black;
+      color: white;
       border: 2px solid red;
       padding-top: 30px;
 }
@@ -305,5 +304,41 @@ button {
 button:hover {
       background-color: red;
       color: white;
-
  }
+
+
+ .loginButton{
+
+   background: transparent;
+   border: 2px solid #0099CC;
+   border-radius: 6px;
+   border: none;
+   color: white;
+   padding: 16px 32px;
+   text-align: center;
+   display: inline-block;
+   font-size: 16px;
+   font-family: 'Marvel';
+   margin: 4px 2px;
+   -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+   cursor: pointer;
+   text-decoration: none;
+   text-transform: uppercase;
+ }
+
+ .loginButton {
+       color: white;
+       border: 2px solid white;
+       padding-top: 30px;
+ }
+
+ .loginButton:hover {
+       background-color: white;
+       color: red;
+  }
+
+  .loginButtonDiv{
+    margin: 0 auto;
+    text-align:center;
+  }
