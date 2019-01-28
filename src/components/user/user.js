@@ -6,15 +6,15 @@ const User = (props) => {
   const { id, firstName, lastName, userName, password } = props.user;
 
   return (
-    <div className="component">
-      <p className="name">
+    <div className="singleUserDetails">
+      <h4 className="name">
       <Link to={"/users/" + id} className="name">
         {firstName} {lastName}
       </Link>
-      </p>
-      <p>Id: {id}</p>
-      <p>User Name: {userName}</p>
-      <p>Password: {password}</p>
+      </h4>
+      <h6>Id: {id}</h6>
+      <h6>User Name: {userName}</h6>
+      <h6>Password: {password}</h6>
     </div>
   )
 }

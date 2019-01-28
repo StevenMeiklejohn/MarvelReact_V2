@@ -26,7 +26,7 @@ class SingleUserContainer extends React.Component{
     const url = '/api/users/' + this.props.id;
     let request = new Request();
     request.delete(url).then(()=>{
-      window.location = '/api/users';
+      window.location = '/users';
     })
 
   }

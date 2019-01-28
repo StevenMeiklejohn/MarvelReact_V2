@@ -6,13 +6,13 @@ const SingleUserView = (props) => {
   const { id, firstName, lastName, userName, password } = props.user;
 
   return (
-    <div className="component">
-      <p className="name">
+    <div className="editUserDetails">
+      <h4 className="name">
         {firstName} {lastName}
-      </p>
-      <p>Id: {id}</p>
-      <p>User Name: {userName}</p>
-      <p>Password: {password}</p>
+      </h4>
+      <h6>Id: {id}</h6>
+      <h6>User Name: {userName}</h6>
+      <h6>Password: {password}</h6>
     </div>
   )
 }

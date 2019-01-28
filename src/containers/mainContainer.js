@@ -40,7 +40,7 @@ class MainContainer extends React.Component{
             return <SingleUserContainer id = {id} />
             }}
           />
-        <Route exact path="/users" component={withRouter(UsersContainer)}/>
+        <Route path="/users" component={UsersContainer}/>
 
         <Route exact path="/comic/:id" render = {(props) =>{
             const id = props.match.params.id;

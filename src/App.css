@@ -74,6 +74,7 @@ a.active {
     font-size: 50px;
     background-color: #e23636;
     text-align: center;
+    list-style-type: none;
   }
 
   p{
@@ -185,4 +186,52 @@ a.active {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+
+.singleUserDetails{
+
+  height: 220px;
+  width:  60%;
+  display: inline-block;
+  margin: 0 auto;
+  border: 10px solid white;
+  border-radius: 15px;
+  overflow: auto;
+  text-align: center;
+}
+
+.singleUserDetails h6{
+
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.singleUserDetails h4{
+  height: 220px;
+  line-height: 80px;
+  margin-top: 7px;
+  margin-bottom: -150px;
+}
+
+.editUserDetails{
+
+  height: 180px;
+  width:  60%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  border: 10px solid white;
+  border-radius: 15px;
+  overflow: auto;
+}
+
+.editUserDetails h6{
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.editUserDetails h4{
+  margin-top: 7px;
+  margin-bottom: 9px;
 }
