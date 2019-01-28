@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 
 const SingleUserView = (props) => {
 
-  const { id, firstName, lastName, userName, password } = props.user;
-
+  const {id, firstName, lastName, userName, password } = props.user;
   return (
     <div className="editUserDetails">
       <h4 className="name">

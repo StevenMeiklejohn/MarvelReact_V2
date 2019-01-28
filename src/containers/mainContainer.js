@@ -10,6 +10,7 @@ import SingleComicContainer from './singleComicContainer'
 import SingleUserContainer from './singleUserContainer'
 import UsersContainer from './usersContainer'
 import LoginContainer from './loginContainer'
+import EditUserContainer from './editUserContainer'
 // const api = require('marvel-api');
 
 
@@ -40,6 +41,11 @@ class MainContainer extends React.Component{
             return <SingleUserContainer id = {id} />
             }}
           />
+        <Route exact path="/users/edit/:id" render = {(props) => {
+          const id = props.match.params.id;
+          return <EditUserContainer id={id} />
+        }}
+        />
         <Route path="/users" component={UsersContainer}/>
 
         <Route exact path="/comic/:id" render = {(props) =>{

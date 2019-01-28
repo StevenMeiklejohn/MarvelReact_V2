@@ -308,7 +308,7 @@ button:hover {
 
 
  .loginButton{
-
+  width: 120px;
    background: transparent;
    border: 2px solid #0099CC;
    border-radius: 6px;

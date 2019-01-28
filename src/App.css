@@ -97,6 +97,7 @@ a.active {
     text-align: center;
   }
 
+
   .image {
     display: flex;
     align-items: center;
@@ -197,8 +198,8 @@ a.active {
   margin: 0 auto;
   border: 10px solid white;
   border-radius: 15px;
-  overflow: auto;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .singleUserDetails h6{
@@ -210,13 +211,13 @@ a.active {
 .singleUserDetails h4{
   height: 220px;
   line-height: 80px;
-  margin-top: 7px;
+  margin-top: 9px;
   margin-bottom: -150px;
 }
 
 .editUserDetails{
 
-  height: 180px;
+  height: 220px;
   width:  60%;
   display: block;
   margin: 0 auto;
@@ -227,11 +228,18 @@ a.active {
 }
 
 .editUserDetails h6{
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 .editUserDetails h4{
+  height: 220px;
+  line-height: 80px;
   margin-top: 7px;
-  margin-bottom: 9px;
+  margin-bottom: -130px;
+}
+
+.editForm h6{
+  margin-top: 16px;
+  margin-bottom: 4px;
 }
