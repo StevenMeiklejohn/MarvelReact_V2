@@ -12,13 +12,14 @@ class Login extends React.Component{
     event.preventDefault();
     const user = {
       "firstName": event.target.firstName.value,
-      "lastName:": event.target.lastName.value,
+      "lastName": event.target.lastName.value,
       "userName": event.target.userName.value,
       "password": event.target.password.value
     }
     console.log(user);
     this.props.handleUserPost(user);
   }
+
 
   render(){
     return(

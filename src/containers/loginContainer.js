@@ -16,7 +16,7 @@ class LoginContainer extends React.Component{
     console.log("handleUserPost called", user);
     const request = new Request();
     request.post('/api/users', user).then(()=> {
-      window.location = '/'
+      window.location = '/users'
     })
 
   }
