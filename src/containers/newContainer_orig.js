@@ -1,7 +1,6 @@
 import React from 'react';
 import MD5 from 'crypto-js/md5'
 import CharacterSelector from './../components/new/characterSelector'
-import SearchTypeSelectorView from './../components/new/searchTypeSelectorView'
 import CharacterView from './../components/new/characterView'
 import EventSelector from './../components/new/eventSelector'
 // const writeFileP = require("write-file-p");
@@ -152,16 +151,16 @@ class New extends React.Component{
             onChange={this.handleCharacterSelector}/>
           </div>
           <div>
-            <SearchTypeSelectorView
-            character={this.state.character}
-            />
+            <EventSelector
+              events={this.state.events}
+              onChange={this.handleEventSelector}/>
             </div>
-          <div>
-            <CharacterView
-              character={this.state.character}
-              eventComics={this.state.eventComics}/>
-            </div>
-        </React.Fragment>
+            <div>
+              <CharacterView
+                character={this.state.character}
+                eventComics={this.state.eventComics}/>
+              </div>
+            </React.Fragment>
           )
         }
       }

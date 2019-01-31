@@ -23,8 +23,7 @@ class CharacterSelector extends React.Component{
     if(this.props.characters.length < 10){
       return(
         <div className="characterSelector">
-          <p class="animated infinite lightSpeedIn delay-2s">Fetching Characters..</p>
-          <p class="animated infinite lightSpeedIn delay-2s">Haud Yer Horses..</p>
+          <h6 class="animated infinite lightSpeedIn delay-2s">Fetching Characters..</h6>
         </div>
       )
     }
@@ -74,7 +73,7 @@ class CharacterSelector extends React.Component{
 
     return(
       <div className="characterSelector">
-        <p>Select a Character</p>
+        <h6>Select a Character</h6>
       <select onChange={this.props.onChange}>
       {this.sorted_options}
       </select>
