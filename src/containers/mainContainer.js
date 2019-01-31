@@ -18,43 +18,60 @@ class MainContainer extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      user: null
+      loggedInUserName: null
     }
+    this.loginUser = this.loginUser.bind(this);
   }
+
+loginUser(loggedInUser){
+  console.log("Main container loginUser called");
+  this.setState({loggedInUserName: loggedInUser})
+}
+
+
 
 
   render(){
+    const MyLoginContainer = (props) => {
+      return (
+        <LoginContainer
+          loginUser="Hello world"
+          {...props}
+        />
+      );
+    }
     return(
       <Router>
         <React.Fragment>
-        <div className="nav">
-          <Navbar />
-        </div>
-        <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={LoginContainer} />
-        <Route path="/account" component={Account} />
-        <Route path="/new" component={New} />
-        <Route path="/recommendations" component={Recommendations} />
-        <Route exact path="/users/:id" render = {(props) =>{
-            const id = props.match.params.id;
-            return <SingleUserContainer id = {id} />
-            }}
-          />
-        <Route exact path="/users/edit/:id" render = {(props) => {
-          const id = props.match.params.id;
-          return <EditUserContainer id={id} />
-        }}
-        />
-        <Route path="/users" component={UsersContainer}/>
+          <div className="nav">
+            <Navbar user={this.state.loggedInUser}/>
+          </div>
+          <Switch>
+            <Route exact path="/" component={Home} />
+        // <Route path="/login" component={LoginContainer} setUser={this.loginUser}/>
+        // <Route path="/login" render={MyLoginContainer}/>
+        // <Route path="/account" component={Account} />
+        // <Route path="/new" component={New} />
+        // <Route path="/recommendations" component={Recommendations} />
+        // <Route exact path="/users/:id" render = {(props) =>{
+            // const id = props.match.params.id;
+            // return <SingleUserContainer id = {id} />
+            // }}
+          // />
+        // <Route exact path="/users/edit/:id" render = {(props) => {
+          // const id = props.match.params.id;
+          // return <EditUserContainer id={id} />
+        // }}
+        // />
+        // <Route path="/users" component={UsersContainer}/>
 
-        <Route exact path="/comic/:id" render = {(props) =>{
-            const id = props.match.params.id;
-            return <SingleComicContainer id = {id} />
-            }}
-          />
+        // <Route exact path="/comic/:id" render = {(props) =>{
+            // const id = props.match.params.id;
+            // return <SingleComicContainer id = {id} />
+            // }}
+          // />
           </Switch>
-      </React.Fragment>
+          </React.Fragment>
       </Router>
     )
   }

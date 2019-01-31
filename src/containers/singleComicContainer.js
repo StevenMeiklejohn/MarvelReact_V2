@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MD5 from 'crypto-js/md5'
 import SingleComicView from './../components/comic/singleComicView'
 import SingleComicDetails from './../components/comic/SingleComicDetails'
+import SingleComicUserOptions from './../components/comic/singleComicUserOptions'
 // const _ = require('lodash');
 // const writeFileP = require("write-file-p");
 const api = require('marvel-api');
@@ -65,6 +66,9 @@ class SingleComicContainer extends Component {
       <div>
        <SingleComicDetails comic = {this.state.comic}/>
        </div>
+       <div>
+        <SingleComicUserOptions comic = {this.state.comic}/>
+        </div>
 
      </React.Fragment>
     )

@@ -5,6 +5,7 @@ class Login extends React.Component{
   constructor(props){
   super(props);
   this.handleSubmit = this.handleSubmit.bind(this);
+  this.handleLoginTry = this.handleLoginTry.bind(this);
   }
 
 
@@ -20,10 +21,30 @@ class Login extends React.Component{
     this.props.handleUserPost(user);
   }
 
+  handleLoginTry(event){
+    event.preventDefault();
+    const user = {
+      "userName": event.target.userName.value,
+      "password": event.target.password.value
+    }
+    console.log("Handle loginTry object", user);
+    this.props.handleLogin(user);
+  }
+
 
   render(){
     return(
       <React.Fragment>
+      <div>
+        <h4>Login</h4>
+      </div>
+      <form onSubmit={this.handleLoginTry}>
+        <input type="text" placeholder="User Name" name="userName"/>
+        <input type="text" placeholder="password" name="password"/>
+        <div className="loginButtonDiv">
+          <button className ="loginButton" type="submit">Enter</button>
+        </div>
+      </form>
       <div>
         <h4>Create An Account</h4>
       </div>
