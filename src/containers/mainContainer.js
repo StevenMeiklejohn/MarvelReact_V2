@@ -18,15 +18,22 @@ class MainContainer extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      loggedInUserName: null
+      loggedInUserName: null,
+      loggedInUser: null
     }
     this.loginUser = this.loginUser.bind(this);
+    this.setloggedInUserInfo = this.setloggedInUserInfo.bind(this);
   }
 
   loginUser(loggedInUser){
-    console.log("Main container loginUser called");
-    console.log("Logged in user being passed", loggedInUser);
+    // console.log("Main container loginUser called");
+    // console.log("Logged in user being passed", loggedInUser);
     this.setState({loggedInUserName: loggedInUser})
+  }
+
+  setloggedInUserInfo(info){
+    console.log("setLogedInUserInfo function called", info);
+    this.setState({loggedInUser: info})
   }
 
 
@@ -38,21 +45,32 @@ class MainContainer extends React.Component{
         <LoginContainer
         loginUser={this.loginUser}
         loginComplete={this.state.loggedInUserName}
+        setloggedInUserInfo={this.setloggedInUserInfo}
         {...props}
         />
       );
     }
+
+    const MyAccountContainer = (props) => {
+      console.log("Main container loggedInUser state", this.state.loggedInUser);
+      return(
+        <Account
+        userInfo={this.state.loggedInUser}
+        {...props}
+        />
+      );
+    }
+
     return(
       <Router>
       <React.Fragment>
       <div className="nav">
       <Navbar user={this.state.loggedInUserName} test="test test test"/>
-
       </div>
       <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/login" render={MyLoginContainer}/>
-      <Route path="/account" component={Account} />
+      <Route path="/account" render={MyAccountContainer} />
       <Route path="/new" component={New} />
       <Route path="/recommendations" component={Recommendations} />
       <Route exact path="/users/:id" render = {(props) =>{

@@ -33,7 +33,7 @@ class LoginContainer extends React.Component{
   }
 
   handleUserPost(user){
-    console.log("handleUserPost called", user);
+    // console.log("handleUserPost called", user);
     const request = new Request();
     request.post('/api/users', user).then(()=> {
       window.location = '/users'
@@ -41,11 +41,11 @@ class LoginContainer extends React.Component{
   }
 
   checkUserDetails(){
-    console.log("Check user details called");
-    console.log("Retrived password", this.state.detailsRetrieved.password);
-    console.log("Submitted password", this.state.detailsSubmitted.password);
+    // console.log("Check user details called");
+    // console.log("Retrived password", this.state.detailsRetrieved.password);
+    // console.log("Submitted password", this.state.detailsSubmitted.password);
     if(this.state.detailsRetrieved.password === this.state.detailsSubmitted.password){
-      console.log("Success you are logged in!");
+      // console.log("Success you are logged in!");
       this.props.loginUser(this.state.detailsSubmitted.userName);
       // console.log("loginContainer props", this.props.route);
       // this.props.setUser(this.state.detailsSubmitted.userName);
@@ -53,10 +53,11 @@ class LoginContainer extends React.Component{
   }
 
   retrieveUserForChecking(submittedDetails){
-    console.log("Retrieve user for checking args", submittedDetails);
+    // console.log("Retrieve user for checking args", submittedDetails);
     const request = new Request();
     request.get('/api/users/findByUserName/' + submittedDetails.userName)
     .then((data) => {this.setState({detailsRetrieved: data})})
+    .then((data)=> {this.props.setloggedInUserInfo(this.state.detailsRetrieved)})
     .then(()=>{this.setState({detailsSubmitted: submittedDetails})})
     .then(()=>{this.checkUserDetails()});
   }
@@ -65,7 +66,7 @@ class LoginContainer extends React.Component{
 
 
   render(){
-    console.log("loginContainer props", this.props);
+    // console.log("loginContainer props", this.props);
     if(this.props.loginComplete){
       return(
         <React.Fragment>

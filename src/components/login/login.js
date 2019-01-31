@@ -17,7 +17,7 @@ class Login extends React.Component{
       "userName": event.target.userName.value,
       "password": event.target.password.value
     }
-    console.log(user);
+    // console.log(user);
     this.props.handleUserPost(user);
   }
 
@@ -27,7 +27,7 @@ class Login extends React.Component{
       "userName": event.target.userName.value,
       "password": event.target.password.value
     }
-    console.log("Handle loginTry object", user);
+    // console.log("Handle loginTry object", user);
     this.props.handleLogin(user);
   }
 
