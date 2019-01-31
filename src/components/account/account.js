@@ -4,9 +4,22 @@ class Account extends React.Component{
 
   constructor(props){
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.directToEditForm = this.directToEditForm.bind(this);
   }
 
-  // const {id, firstName, lastName, userName, password } = props.userInfo;
+  handleDelete(){
+    const url = '/api/users/' + this.props.userInfo.id;
+    let request = new Request();
+    request.delete(url).then(()=>{
+      window.location = '/users';
+    })
+  }
+
+  directToEditForm(){
+    window.location = '/users/edit/' + this.props.userInfo.id;
+  }
+
   render(){
       console.log("AcountView props user info", this.props.userInfo);
   return (
@@ -18,6 +31,11 @@ class Account extends React.Component{
       <h6>Id: {this.props.userInfo.id}</h6>
       <h6>User Name: {this.props.userInfo.userName}</h6>
       <h6>Password: {this.props.userInfo.password}</h6>
+    </div>
+    <div className="loginButtonDiv">
+    <button className ="loginButton" onClick={this.handleDelete}>Delete</button>
+    <button className ="loginButton" onClick={this.directToEditForm}>Edit</button>
+
     </div>
 
     </React.Fragment>
