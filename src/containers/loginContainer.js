@@ -1,6 +1,8 @@
 import React from 'react'
 import Login from './../components/login/login'
 import Request from './../helpers/request'
+import { Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, withRouter, Link } from "react-router-dom";
 
 class LoginContainer extends React.Component{
 
@@ -9,11 +11,25 @@ class LoginContainer extends React.Component{
     this.state = {
       detailsRetrieved: null,
       detailsSubmitted: null,
-      loggedInUser: null
+      loggedInUser: null,
+      redirect: false
     }
     this.handleUserPost = this.handleUserPost.bind(this);
     this.retrieveUserForChecking = this.retrieveUserForChecking.bind(this);
     this.checkUserDetails = this.checkUserDetails.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this);
+  }
+
+  setRedirect(){
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect(){
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
   }
 
   handleUserPost(user){
@@ -30,6 +46,7 @@ class LoginContainer extends React.Component{
     console.log("Submitted password", this.state.detailsSubmitted.password);
     if(this.state.detailsRetrieved.password === this.state.detailsSubmitted.password){
       console.log("Success you are logged in!");
+      this.props.loginUser(this.state.detailsSubmitted.userName);
       // console.log("loginContainer props", this.props.route);
       // this.props.setUser(this.state.detailsSubmitted.userName);
     }
@@ -42,17 +59,28 @@ class LoginContainer extends React.Component{
     .then((data) => {this.setState({detailsRetrieved: data})})
     .then(()=>{this.setState({detailsSubmitted: submittedDetails})})
     .then(()=>{this.checkUserDetails()});
-}
+  }
 
 
 
 
   render(){
-    // if(!this.props.setUser){
-    //   console.log("no props found");
-    //   return null;
-    // }
     console.log("loginContainer props", this.props);
+    if(this.props.loginComplete){
+      return(
+        <React.Fragment>
+        <div>
+        <h4> Great! </h4>
+        <h4> You are now logged in! </h4>
+        </div>
+        <div className="loginButtonDiv">
+          {this.renderRedirect()}
+          <button className ="loginButton" onClick={this.setRedirect}>Go!</button>
+        </div>
+        </React.Fragment>
+      )
+    }
+
     return(
       <Login handleUserPost={this.handleUserPost} handleLogin={this.retrieveUserForChecking}/>
     )
