@@ -8,8 +8,6 @@ class SearchTypeSelector extends React.Component{
 
   constructor(props){
   super(props);
-  this.searchOptions = ["Creators", "Events", "Series"];
-  this.optionElements = [];
   }
 
 
@@ -26,7 +24,7 @@ class SearchTypeSelector extends React.Component{
       <select onChange={this.props.onChange}>
         <option key="1" value="Creators">Creators</option>
         <option key="2" value="Events">Events</option>
-        <option key="2" value="Series">Series</option>
+        <option key="3" value="Series">Series</option>
       </select>
       </div>
     )

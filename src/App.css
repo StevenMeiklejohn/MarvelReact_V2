@@ -159,6 +159,7 @@ a.active {
     margin-right: auto;
     border: 10px solid white;
     border-radius: 15px;
+    overflow: auto;
 
   }
 

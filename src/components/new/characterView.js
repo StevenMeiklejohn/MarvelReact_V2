@@ -22,7 +22,7 @@ class CharacterView extends React.Component {
 
 
 
-    if(this.props.character){
+    if(this.props.character && this.props.eventComics.length < 1){
       // console.log(this.props.character);
       return(
         <div className="characterView">

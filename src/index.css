@@ -93,8 +93,35 @@ body {
 .searchOptionSelector h6{
   margin-top: 16px;
   margin-bottom: 4px;
-  padding-left: 40px;
+  margin-left: 45px;
+
+  /* padding-left: 40px; */
 }
+
+.filteredSelector{
+  position: absolute;
+  float: left;
+  width: 300px;
+  top: 550px;
+  margin-left: 50px;
+  height: 100px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  text-align: center;
+}
+
+.filteredSelector h6{
+  margin-top: 16px;
+  margin-bottom: 4px;
+  padding-left: 35px;
+
+}
+
+
 
 .titleSelector{
   position: absolute;

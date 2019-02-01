@@ -4,6 +4,7 @@ import CharacterSelector from './../components/new/characterSelector'
 import SearchTypeSelectorView from './../components/new/searchTypeSelectorView'
 import CharacterView from './../components/new/characterView'
 import EventSelector from './../components/new/eventSelector'
+import FilteredSelectorView from './../components/new/filteredSelector'
 // const writeFileP = require("write-file-p");
 
 const api = require('marvel-api');
@@ -17,15 +18,22 @@ class New extends React.Component{
       character: null,
       events:[],
       event: null,
+      creators: [],
+      series: [],
       eventComics: [],
-      selectedComic: null
+      selectedComic: null,
+      filter: null,
+      filteredOptions: []
     }
     this.get_characters = this.get_characters.bind(this);
     this.get_all_characters = this.get_all_characters.bind(this);
     this.search_for_character = this.search_for_character.bind(this);
     this.handleCharacterSelector = this.handleCharacterSelector.bind(this);
+    this.handleFilterSelect = this.handleFilterSelect.bind(this);
     this.handleEventSelector = this.handleEventSelector.bind(this);
     this.getIssuesInEvent = this.getIssuesInEvent.bind(this);
+    this.get_all_events = this.get_all_events.bind(this);
+    this.get_events = this.get_events.bind(this);
 
     this.marvel = api.createClient({
       publicKey: "1a11ffc2c79394bdd4e7a7b8d97c43a9",
@@ -103,7 +111,8 @@ class New extends React.Component{
 
 
   get_events(id, num_to_get, index_offset){
-    let events = this.state.events;
+    console.log("get_events called");
+    let events = [];
     this.marvel.characters.events(id, num_to_get, index_offset)
     .then(function(res){
       events.push(res.data);
@@ -122,7 +131,7 @@ class New extends React.Component{
       comics.push(res.data);
       console.log(res.data);
       this.setState({eventComics: comics});
-      this.setState({character: null});
+      // this.setState({character: null});
     }.bind(this))
     .fail(console.error)
     .done();
@@ -137,10 +146,38 @@ class New extends React.Component{
 
   handleEventSelector(event){
     console.log(event.target.value);
-    this.setState({eventComics: []});
-    this.setState({character: null}, this.getIssuesInEvent(event.target.value, 100, 0))
-
+    this.setState({eventComics: []}, this.getIssuesInEvent(event.target.value, 100, 0));
+    // this.setState({character: null}, this.getIssuesInEvent(event.target.value, 100, 0))
   }
+
+  handleFilterSelect(event){
+    console.log("NewContainerHandleFilterSelect value", event.target.value);
+    if(event.target.value === "Events"){
+      this.setState({filter: "event"}, this.get_all_events)
+      // .then(()=>{this.setState({events: []})})
+      // .then(()=>{this.get_events(this.state.character.id, 50, 0)})
+     }
+    if(event.target.value === "Creators"){
+      this.setState({filter: "creators"});
+    }
+    if(event.target.value === "Series"){
+      this.setState({filter: "series"});
+    }
+  }
+
+  // handleEventSearch(){
+  //   this.setState({filter: event.target.value})
+  //   .then(()=>{this.setState({eventComics: []})})
+  //   .then(()=>{this.setState({character: null}, this.getIssuesInEvent(event.target.value, 100, 0))})
+  // }
+  //
+  // handleCreatorSearch(){
+  //
+  // }
+  //
+  // handleSeriesSearch(){
+  //
+  // }
 
   render(){
     return(
@@ -154,10 +191,19 @@ class New extends React.Component{
           <div>
             <SearchTypeSelectorView
             character={this.state.character}
+            onChange={this.handleFilterSelect}
             />
             </div>
           <div>
+          <div>
+            <FilteredSelectorView
+              filteredType={this.state.filter}
+              filteredOptions={this.state.events}
+              onChange={this.handleEventSelector}
+            />
+          </div>
             <CharacterView
+              filter={this.state.filter}
               character={this.state.character}
               eventComics={this.state.eventComics}/>
             </div>
