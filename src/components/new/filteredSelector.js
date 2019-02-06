@@ -19,12 +19,13 @@ class FilteredSelector extends React.Component{
 
   render(){
     console.log("FilteredSelector props type", this.props.filteredType);
+    console.log("FilteredSelector options prop event", this.props.filteredOptions);
     if(!this.props.filteredType){
       return null;
     }
 
     if(this.props.filteredType === "event" && this.props.filteredOptions.length > 0){
-      console.log("FilteredSelector options prop", this.props.filteredOptions);
+      console.log("FilteredSelector options prop event", this.props.filteredOptions);
       let options = this.props.filteredOptions[0];
       let optionElements = [];
       options.forEach(function(item){
@@ -34,18 +35,21 @@ class FilteredSelector extends React.Component{
       console.log("sorted option elements", this.sorted_options);
     }
 
-    if(this.props.filteredType === "creators"){
-      let options = this.props.filteredOption;
+    if(this.props.filteredType === "stories" && this.props.filteredOptions.length > 0){
+      console.log("FilteredSelector options prop stories", this.props.filteredOptions);
+      let options = this.props.filteredOptions;
       let optionElements = [];
       options.forEach(function(item){
-        optionElements.push(<option key={item.id} value={item.id}>{item.title}</option>)
+        item.forEach(function(element){
+          optionElements.push(<option key={element.id} value={element.id}>{element.title}</option>)
+        })
       })
       this.sorted_options = optionElements;
 
     }
 
     if(this.props.filteredType === "series"){
-      let options = this.props.filteredOption;
+      let options = this.props.filteredOptions[0];
       let optionElements = [];
       options.forEach(function(item){
         optionElements.push(<option key={item.id} value={item.id}>{item.title}</option>)
