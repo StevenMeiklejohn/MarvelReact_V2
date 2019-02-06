@@ -9,18 +9,24 @@ class CharacterView extends React.Component {
 
     if(this.props.filter == "stories" && this.props.storiesComics.length > 0){
       console.log("characterView props.storiesComics", this.props.storiesComics);
-      // let latestIndex = this.props.storiesComics.length - 1;
-      // console.log(this.props.eventComics[latestIndex])
-
-
-      // let incomingThumbnails = this.props.storiesComics[0];
-      let imageArray = [];
-      // incomingThumbnails.forEach(function(element){
-        // element.forEach(function(item){
-        imageArray.push(this.props.storiesComics[0].thumbnail.path + ".jpg");
-        // })
-      // })
+      return(
+        <div>
+        <img className="characterImage" src={this.props.storiesComics[0].thumbnail.path + ".jpg"} alt="https://get.whotrades.com/u3/photo843E/20389222600-0/big.jpeg"/>
+        </div>
+      )
     }
+
+    if(this.props.filter == "event" && this.props.eventComics.length > 0){
+      // console.log(this.props.eventComics);
+      let latestIndex = this.props.eventComics.length - 1;
+      // console.log(this.props.eventComics[latestIndex])
+      let incomingThumbnails = this.props.eventComics[latestIndex];
+      let imageArray = [];
+      incomingThumbnails.forEach(function(element){
+        // element.forEach(function(item){
+        imageArray.push(element.thumbnail.path + ".jpg");
+        // })
+      })
 
     if(this.props.character && this.props.eventComics.length < 1){
       // console.log(this.props.character);
@@ -45,17 +51,7 @@ class CharacterView extends React.Component {
       )
     }
 
-    if(this.props.filter == "event" && this.props.eventComics.length > 0){
-      // console.log(this.props.eventComics);
-      let latestIndex = this.props.eventComics.length - 1;
-      // console.log(this.props.eventComics[latestIndex])
-      let incomingThumbnails = this.props.eventComics[latestIndex];
-      let imageArray = [];
-      incomingThumbnails.forEach(function(element){
-        // element.forEach(function(item){
-        imageArray.push(element.thumbnail.path + ".jpg");
-        // })
-      })
+
 
 
         return(
