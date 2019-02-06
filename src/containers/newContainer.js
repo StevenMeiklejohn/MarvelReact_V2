@@ -15,31 +15,18 @@ class New extends React.Component{
   // selectedComic:
   // filter: Selected filter option(events/series.stories)
   // filterOptionResults: Array of events/stories/series for a given character.
+  // event_series_story_selected: Selection from event/series/story filter.
   // resultComics: Array of comics based on all filters.
-
-
-  // event: selected event.
-  // events: All events returned for selected character.
-  // stories: All stories returned for a given character.
-  // series: All series returned for a given character.
-  // eventComics: comics returned from selected event.
-  // filteredOptions:
-  // resultComics: Results to be rendered.
 
   constructor(props){
     super(props);
     this.state = {
       characters:[],
       character: null,
-      events:[],
-      event: null,
-      stories: [],
-      series: [],
-      eventComics: [],
-      storiesComics: [],
       selectedComic: null,
       filter: null,
-      filteredOptions: [],
+      filterOptionResults: [],
+      event_series_story_selected: null,
       resultComics: []
     }
     this.get_characters = this.get_characters.bind(this);
@@ -69,18 +56,6 @@ class New extends React.Component{
 
   }
 
-
-//   get_all_characters_from_db(){
-//     let orderedChars = [];
-//     let request = new Request();
-//     request.get('/api/marvelCharacters?page=1&size=1500').then((data) => {
-//       orderedChars = _.sortBy(data._embedded, [function(o) { return o.name; }]);
-//       console.log("data from db", orderedChars);
-//       // this.setState({pirates: data._embedded.pirates})
-// })
-
-
-
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -101,9 +76,6 @@ class New extends React.Component{
     await Promise.all(promises);
   }
 
-
-
-
   get_characters(num_to_get, index_offset){
     let chars = this.state.characters;
     this.marvel.characters.findAll(num_to_get, index_offset)
@@ -120,14 +92,13 @@ class New extends React.Component{
     this.marvel.characters.findByName(character)
     .then(function(res) {
       this.setState({character: res.data[0]}, this.get_all_events);
-      // console.log(res.data[0]);
     }.bind(this))
     .fail(console.error)
     .done();
   }
 
   async get_all_events() {
-    this.setState({events: []}, this.get_events(this.state.character.id, 50, 0));
+    this.setState({filterOptionResults: []}, this.get_events(this.state.character.id, 50, 0));
   }
 
   get_events(id, num_to_get, index_offset){
@@ -137,14 +108,14 @@ class New extends React.Component{
     .then(function(res){
       events.push(res.data);
       // console.log(res.data);
-      this.setState({events: events}, this.setState({filteredOptions: events}))
+      this.setState({filterOptionResults: events})
     }.bind(this))
     .fail(console.error)
     .done();
   }
 
   async get_all_series() {
-    this.setState({series: []}, this.get_series(this.state.character.id, 50, 0));
+    this.setState({filterOptionResults: []}, this.get_series(this.state.character.id, 50, 0));
   }
 
   get_series(id, num_to_get, index_offset){
@@ -154,7 +125,7 @@ class New extends React.Component{
     .then(function(res){
       series.push(res.data);
       // console.log(res.data);
-      this.setState({series: series}, this.setState({filteredOptions: series}))
+      this.setState({filterOptionResults: series})
     }.bind(this))
     .fail(console.error)
     .done();
@@ -162,8 +133,7 @@ class New extends React.Component{
 
   async get_all_stories() {
     console.log("Get all stories called");
-    // this.setState({stories: []}, this.get_all_stories_loop);
-    this.setState({stories: []}, this.setState({events: []}, this.setState({series: []}, this.get_all_stories_loop)));
+    this.setState({filterOptionResults: []}, this.get_all_stories_loop);
   }
 
   async get_all_stories_loop() {
@@ -179,14 +149,13 @@ class New extends React.Component{
   get_stories(id, num_to_get, index_offset){
     console.log("get_stories called");
     console.log("get_stories this.state.stories", this.state.stories);
-    let stories = this.state.stories;
+    let stories = this.state.filterOptionResults;
     this.marvel.characters.stories(id, num_to_get, index_offset)
     .then(function(res){
       stories.push(res.data);
       // console.log(res.data);
-      this.setState({stories: stories}, this.setState({filteredOptions: stories}))
-      console.log("After get stories this.state.stories", this.state.stories);
-      console.log("After get stories this.state.filteredOptions", this.state.filteredOptions);
+      this.setState({filterOptionResults: stories})
+      console.log("After get stories this.state.filterOptionResults", this.state.filterOptionResults);
     }.bind(this))
     .fail(console.error)
     .done();
@@ -229,28 +198,20 @@ class New extends React.Component{
         var jsonString = request.responseText;
         var marvel = JSON.parse(jsonString);
         console.log("getIssuesInStory parsed response", marvel);
-        this.setState({storiesComics: marvel.data.results});
-
-        // this.setState({comic: marvel.data});
-        // this.setState({frontCover: marvel.data.results[0].thumbnail.path});
-        // this.setState({title: marvel.data.results[0].title})
-        // this.setState({id: marvel.data.results[0].id})
-        // var creatorArray = marvel.data.results[0].creators.items;
-        // var newArray = this.state.creators.concat(creatorArray);
-        // this.setState({creators: newArray});
+        this.setState({resultComics: marvel.data.results});
       }
     }
     request.send();
   };
 
   getIssuesInEvent(event_id, num_to_get, index_offset){
-    let comics = this.state.eventComics;
+    let comics = this.state.resultComics;
     console.log(event_id);
     this.marvel.events.comics(event_id, num_to_get, index_offset)
     .then(function(res){
       comics.push(res.data);
       console.log(res.data);
-      this.setState({eventComics: comics});
+      this.setState({resultComics: comics});
       // this.setState({character: null});
     }.bind(this))
     .fail(console.error)
@@ -259,8 +220,6 @@ class New extends React.Component{
 
 
   handleCharacterSelector(event){
-    // console.log(event.target.value);
-    // console.log(event.target.key);
     this.search_for_character(event.target.value)
   }
 
@@ -273,11 +232,11 @@ class New extends React.Component{
   handleFilteredOptionSelector(event){
     if(this.state.filter === "stories"){
     console.log(event.target.value);
-    this.setState({storyComics: []}, this.getIssuesInStory(event.target.value, 100, 0));
+    this.setState({resultComics: []}, this.getIssuesInStory(event.target.value, 100, 0));
     }
     if(this.state.filter === "event"){
     console.log(event.target.value);
-    this.setState({eventComics: []}, this.getIssuesInEvent(event.target.value, 100, 0));
+    this.setState({resultComics: []}, this.getIssuesInEvent(event.target.value, 100, 0));
     }
   }
 
@@ -285,8 +244,6 @@ class New extends React.Component{
     console.log("NewContainerHandleFilterSelect value", event.target.value);
     if(event.target.value === "Events"){
       this.setState({filter: "event"}, this.get_all_events)
-      // .then(()=>{this.setState({events: []})})
-      // .then(()=>{this.get_events(this.state.character.id, 50, 0)})
      }
     if(event.target.value === "Stories"){
       this.setState({filter: "stories"}, this.get_all_stories);
@@ -316,15 +273,15 @@ class New extends React.Component{
           <div>
             <FilteredSelectorView
               filteredType={this.state.filter}
-              filteredOptions={this.state.filteredOptions}
+              filteredOptions={this.state.filterOptionResults}
               onChange={this.handleFilteredOptionSelector}
             />
           </div>
             <CharacterView
               filter={this.state.filter}
               character={this.state.character}
-              eventComics={this.state.eventComics}
-              storiesComics={this.state.storiesComics}/>
+              eventComics={this.state.resultComics}
+              storiesComics={this.state.resultComics}/>
             </div>
         </React.Fragment>
           )
