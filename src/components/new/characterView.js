@@ -1,5 +1,7 @@
 import React from 'react';
 import Gallery from './gallery'
+import GallerySingle from './gallerySingle'
+
 
 
 class CharacterView extends React.Component {
@@ -7,28 +9,7 @@ class CharacterView extends React.Component {
 
   render(){
 
-    if(this.props.filter == "stories" && this.props.storiesComics.length > 0){
-      console.log("characterView props.storiesComics", this.props.storiesComics);
-      return(
-        <div>
-        <img className="characterImage" src={this.props.storiesComics[0].thumbnail.path + ".jpg"} alt="https://get.whotrades.com/u3/photo843E/20389222600-0/big.jpeg"/>
-        </div>
-      )
-    }
-
-    if(this.props.filter == "event" && this.props.eventComics.length > 0){
-      // console.log(this.props.eventComics);
-      let latestIndex = this.props.eventComics.length - 1;
-      // console.log(this.props.eventComics[latestIndex])
-      let incomingThumbnails = this.props.eventComics[latestIndex];
-      let imageArray = [];
-      incomingThumbnails.forEach(function(element){
-        // element.forEach(function(item){
-        imageArray.push(element.thumbnail.path + ".jpg");
-        // })
-      })
-
-    if(this.props.character && this.props.eventComics.length < 1){
+    if(this.props.character && this.props.characterViewStatus === "character"){
       // console.log(this.props.character);
       return(
         <div className="characterView">
@@ -51,15 +32,46 @@ class CharacterView extends React.Component {
       )
     }
 
+    if(this.props.characterViewStatus == "story" && this.props.storiesComics.length > 0){
+      console.log("characterView props.storiesComics", this.props.storiesComics);
+      let details = this.props.storiesComics[0];
+      let imageUrl = this.props.storiesComics[0].thumbnail.path + ".jpg";
+      console.log("CharacterView Story details", details);
+      console.log("CharacterView Story imageUrl", imageUrl);
+      return(
+        <div className="characterView">
+        <GallerySingle imageUrl={imageUrl}
+        details={details}/>
+        </div>
+      )
 
+      // return(
+      //   <div>
+      //   <img className="storyCoverImage" src={this.props.storiesComics[0].thumbnail.path + ".jpg"} alt="https://get.whotrades.com/u3/photo843E/20389222600-0/big.jpeg"/>
+      //   </div>
+      // )
+    }
 
-
+    if(this.props.characterViewStatus == "event" && this.props.eventComics.length > 0){
+      // console.log(this.props.eventComics);
+      let latestIndex = this.props.eventComics.length - 1;
+      // console.log(this.props.eventComics[latestIndex])
+      let incomingThumbnails = this.props.eventComics[latestIndex];
+      let imageArray = [];
+      incomingThumbnails.forEach(function(element){
+        // element.forEach(function(item){
+        imageArray.push(element.thumbnail.path + ".jpg");
+        // })
+      })
         return(
           <div className="characterView">
           <Gallery imageUrls={imageArray}
           detailsArray={incomingThumbnails}/>
           </div>
         )}
+
+
+
         else {
           return(
             <div className="characterView">

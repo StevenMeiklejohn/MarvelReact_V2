@@ -113,6 +113,15 @@ a.active {
     border-radius: 15px;
   }
 
+  .storyCoverImage {
+    height: 480px;
+    display: block;
+    margin-left: 600px;
+    margin-right: auto;
+    border: 4px solid white;
+    border-radius: 15px;
+  }
+
   .singleComicCoverImageDiv{
     position: absolute;
     top: 12%;
