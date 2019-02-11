@@ -48,7 +48,8 @@ class FilteredSelector extends React.Component{
 
     }
 
-    if(this.props.filteredType === "series"){
+    if(this.props.filteredType === "series" && this.props.filteredOptions.length > 0){
+      console.log("FilteredSelector options prop series", this.props.filteredOptions[0]);
       let options = this.props.filteredOptions[0];
       let optionElements = [];
       options.forEach(function(item){
@@ -56,6 +57,7 @@ class FilteredSelector extends React.Component{
       })
       this.sorted_options = optionElements;
     }
+
 
 
     return(

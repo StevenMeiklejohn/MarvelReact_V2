@@ -44,12 +44,6 @@ class CharacterView extends React.Component {
         details={details}/>
         </div>
       )
-
-      // return(
-      //   <div>
-      //   <img className="storyCoverImage" src={this.props.storiesComics[0].thumbnail.path + ".jpg"} alt="https://get.whotrades.com/u3/photo843E/20389222600-0/big.jpeg"/>
-      //   </div>
-      // )
     }
 
     if(this.props.characterViewStatus == "event" && this.props.eventComics.length > 0){
@@ -68,6 +62,25 @@ class CharacterView extends React.Component {
           <Gallery imageUrls={imageArray}
           detailsArray={incomingThumbnails}/>
           </div>
+      )}
+
+
+      if(this.props.characterViewStatus == "series" && this.props.seriesComics.length > 0){
+        console.log("CharacterView series comics", this.props.seriesComics);
+        let latestIndex = this.props.seriesComics.length - 1;
+        // console.log(this.props.eventComics[latestIndex])
+        let incomingThumbnails = this.props.seriesComics[latestIndex];
+        let imageArray = [];
+        incomingThumbnails.forEach(function(element){
+          // element.forEach(function(item){
+          imageArray.push(element.thumbnail.path + ".jpg");
+          // })
+        })
+          return(
+            <div className="characterView">
+            <Gallery imageUrls={imageArray}
+            detailsArray={incomingThumbnails}/>
+            </div>
         )}
 
 

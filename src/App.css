@@ -115,6 +115,7 @@ a.active {
 
   .storyCoverImage {
     height: 480px;
+    width: 300px;
     display: block;
     margin-left: 600px;
     margin-right: auto;

@@ -29,6 +29,7 @@ class New extends React.Component{
       event_series_story_selected: null,
       resultComicsEvent: [],
       resultComicsStory: [],
+      resultComicsSeries: [],
       characterViewStatus: null
     }
     this.get_characters = this.get_characters.bind(this);
@@ -227,6 +228,22 @@ class New extends React.Component{
 
 
 
+  getIssuesInSeries(series_id, num_to_get, index_offset){
+    let comics = this.state.resultComicsSeries;
+    // console.log(event_id);
+    this.marvel.series.comics(series_id, num_to_get, index_offset)
+    .then(function(res){
+      comics.push(res.data);
+      // console.log(res.data);
+      this.setState({resultComicsSeries: comics}, this.setState({characterViewStatus: "series"}));
+      // this.setState({character: null});
+    }.bind(this))
+    .fail(console.error)
+    .done();
+  }
+
+
+
 
   handleEventSelector(event){
     // console.log(event.target.value);
@@ -242,6 +259,10 @@ class New extends React.Component{
     if(this.state.filter === "event"){
     // console.log(event.target.value);
     this.setState({resultComicsEvent: []}, this.getIssuesInEvent(event.target.value, 100, 0));
+    }
+    if(this.state.filter === "series"){
+    // console.log(event.target.value);
+    this.setState({resultComicsSeries: []}, this.getIssuesInSeries(event.target.value, 100, 0));
     }
   }
 
@@ -287,7 +308,8 @@ class New extends React.Component{
               characterViewStatus={this.state.characterViewStatus}
               character={this.state.character}
               eventComics={this.state.resultComicsEvent}
-              storiesComics={this.state.resultComicsStory}/>
+              storiesComics={this.state.resultComicsStory}
+              seriesComics={this.state.resultComicsSeries}/>
             </div>
         </React.Fragment>
           )
