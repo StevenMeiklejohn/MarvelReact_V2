@@ -185,6 +185,11 @@ a.active {
     opacity: 0.4;
   }
 
+  .recommendationThumbnail{
+    height: 100px;
+    width: 70px;
+  }
+
 
 
 
@@ -225,6 +230,46 @@ a.active {
   border-radius: 15px;
   text-align: center;
   margin-bottom: 15px;
+}
+
+.recommendationView{
+  height: 220px;
+  border: 5px solid white;
+  border-radius: 25px;
+  width: 30%;
+  overflow: auto;
+}
+
+.recommendationViewText{
+  display: inline-block;
+  height: 190px;
+
+  width: 75%;
+  overflow: auto;
+  float: left;
+}
+
+.recommendationViewImage{
+  display: inline-block;
+  float: right;
+  height: 120px;
+  width: 20%;
+  border: 3px solid white;
+  border-radius: 25px;
+}
+
+.recommendationThumbnail{
+  padding-top: 10px;
+  display: block;
+margin-left: auto;
+margin-right: auto;
+
+}
+
+.recommendationView h6{
+
+  margin-top: 19px;
+  margin-bottom: 2px;
 }
 
 .singleUserDetails h6{

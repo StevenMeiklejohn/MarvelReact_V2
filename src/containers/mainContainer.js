@@ -11,6 +11,7 @@ import SingleUserContainer from './singleUserContainer'
 import UsersContainer from './usersContainer'
 import LoginContainer from './loginContainer'
 import EditUserContainer from './editUserContainer'
+
 // const api = require('marvel-api');
 
 
@@ -24,6 +25,7 @@ class MainContainer extends React.Component{
     this.loginUser = this.loginUser.bind(this);
     this.setloggedInUserInfo = this.setloggedInUserInfo.bind(this);
   }
+
 
   loginUser(loggedInUser){
     // console.log("Main container loginUser called");
@@ -72,7 +74,14 @@ class MainContainer extends React.Component{
       <Route path="/login" render={MyLoginContainer}/>
       <Route path="/account" render={MyAccountContainer} />
       <Route path="/new" component={New} />
-      <Route path="/recommendations" component={Recommendations} />
+
+
+      <Route exact path="/recommendations" render = {(props) => {
+        const userProp = this.state.loggedInUser;
+        return <Recommendations user={userProp} />
+      }}
+      />
+
       <Route exact path="/users/:id" render = {(props) =>{
         const id = props.match.params.id;
         return <SingleUserContainer id = {id} />

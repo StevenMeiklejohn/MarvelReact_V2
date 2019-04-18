@@ -5,9 +5,13 @@ import SearchTypeSelectorView from './../components/new/searchTypeSelectorView'
 import CharacterView from './../components/new/characterView'
 import EventSelector from './../components/new/eventSelector'
 import FilteredSelectorView from './../components/new/filteredSelector'
-// const writeFileP = require("write-file-p");
+import Request from './../helpers/request'
+const _ = require('lodash');
+
 
 const api = require('marvel-api');
+// const api = require('marvel-comics-api')
+
 
 class New extends React.Component{
   // characters: All characters returned from database.
@@ -47,15 +51,24 @@ class New extends React.Component{
     this.get_stories = this.get_stories.bind(this);
     this.get_all_stories = this.get_all_stories.bind(this);
     this.get_all_stories_loop = this.get_all_stories_loop.bind(this);
+    this.backupCharacters = this.backupCharacters.bind(this);
+    this.backupSingleCharacter = this.backupSingleCharacter.bind(this);
+    this.get_all_characters_from_db = this.get_all_characters_from_db.bind(this);
+
+
 
     this.marvel = api.createClient({
-      publicKey: "1a11ffc2c79394bdd4e7a7b8d97c43a9",
-      privateKey: "403c5f3406be455684061d92266dea467b382bdc"
+      publicKey: "4a03954b8fa5228dc3041687a73e9dcf",
+      privateKey: "48ffbbc1a2081d47902dbcbee9544ae840cd5f2a"
+
+      // publicKey: "1a11ffc2c79394bdd4e7a7b8d97c43a9",
+      // privateKey: "403c5f3406be455684061d92266dea467b382bdc"
     });
   }
 
   componentDidMount(){
-    this.get_all_characters();
+    this.get_all_characters_from_db();
+    // this.get_all_characters();
 
   }
 
@@ -69,8 +82,57 @@ class New extends React.Component{
     return MD5(value).toString();
   };
 
+  get_all_characters_from_db(){
+    const promises = [];
+    const request = new Request();
+    promises.push(request.get('http://localhost:8080/api/marvelCharacters?page=0&size=1425'));
+    promises.push(request.get('http://localhost:8080/api/marvelCharacters?page=1&size=1425'))
+    Promise.all(promises)
+    .then((data) => {
+      this.setState({characters: data}, console.log("Get characters from db completed", data));
+    })
+  }
+
+
+
   handleCharacterSelector(event){
+    // this.backupSingleCharacter();
+    // this.backupCharacters();
     this.search_for_character(event.target.value)
+  }
+
+  backupCharacters(){
+    var postPromises = [];
+    for(let characterArray of this.state.characters){
+      for(let character of characterArray){
+        const newPostObject = {
+          marvelId: character.id,
+          name: character.name,
+          description: character.description,
+          resourceURI: character.resourceURI,
+          thumbnail: character.thumbnail.path + "." + character.thumbnail.extension
+        }
+        console.log("New Post Object", newPostObject);
+        const request = new Request();
+        postPromises.push(request.post('http://localhost:8080/api/marvelCharacters', newPostObject));
+      }
+    }
+    Promise.all(postPromises)
+    .then(console.log("Character backup complete"));
+  }
+
+  backupSingleCharacter(){
+    var character = this.state.characters[0][0];
+    const newPostObject = {
+      marvelId: character.id,
+      name: character.name,
+      description: character.description,
+      resourceURI: character.resourceURI,
+      thumbnail: character.thumbnail.path + "." + character.thumbnail.extension
+    }
+    const request = new Request();
+    request.post('http://localhost:8080/api/marvelCharacters', newPostObject)
+    .then(console.log("Character posted to db"))
   }
 
 
@@ -94,6 +156,8 @@ class New extends React.Component{
     .fail(console.error)
     .done();
   }
+
+
 
   search_for_character(character){
     this.marvel.characters.findByName(character)
@@ -253,16 +317,16 @@ class New extends React.Component{
 
   handleFilteredOptionSelector(event){
     if(this.state.filter === "stories"){
-    // console.log(event.target.value);
-    this.setState({resultComicsStory: []}, this.getIssuesInStory(event.target.value, 100, 0));
+      // console.log(event.target.value);
+      this.setState({resultComicsStory: []}, this.getIssuesInStory(event.target.value, 100, 0));
     }
     if(this.state.filter === "event"){
-    // console.log(event.target.value);
-    this.setState({resultComicsEvent: []}, this.getIssuesInEvent(event.target.value, 100, 0));
+      // console.log(event.target.value);
+      this.setState({resultComicsEvent: []}, this.getIssuesInEvent(event.target.value, 100, 0));
     }
     if(this.state.filter === "series"){
-    // console.log(event.target.value);
-    this.setState({resultComicsSeries: []}, this.getIssuesInSeries(event.target.value, 100, 0));
+      // console.log(event.target.value);
+      this.setState({resultComicsSeries: []}, this.getIssuesInSeries(event.target.value, 100, 0));
     }
   }
 
@@ -270,7 +334,7 @@ class New extends React.Component{
     // console.log("NewContainerHandleFilterSelect value", event.target.value);
     if(event.target.value === "Events"){
       this.setState({filter: "event"}, this.get_all_events)
-     }
+    }
     if(event.target.value === "Stories"){
       this.setState({filter: "stories"}, this.get_all_stories);
     }
@@ -283,37 +347,37 @@ class New extends React.Component{
   render(){
     return(
       <React.Fragment>
-        <p>Create a new recommendation using the tools below!</p>
-        <div>
-          <CharacterSelector
-            characters={this.state.characters}
-            onChange={this.handleCharacterSelector}/>
-          </div>
-          <div>
-            <SearchTypeSelectorView
-            character={this.state.character}
-            onChange={this.handleFilterSelect}
-            />
-            </div>
-          <div>
-          <div>
-            <FilteredSelectorView
-              filteredType={this.state.filter}
-              filteredOptions={this.state.filterOptionResults}
-              onChange={this.handleFilteredOptionSelector}
-            />
-          </div>
-            <CharacterView
-              filter={this.state.filter}
-              characterViewStatus={this.state.characterViewStatus}
-              character={this.state.character}
-              eventComics={this.state.resultComicsEvent}
-              storiesComics={this.state.resultComicsStory}
-              seriesComics={this.state.resultComicsSeries}/>
-            </div>
-        </React.Fragment>
-          )
-        }
-      }
+      <p>Create a new recommendation using the tools below!</p>
+      <div>
+      <CharacterSelector
+      characters={this.state.characters}
+      onChange={this.handleCharacterSelector}/>
+      </div>
+      <div>
+      <SearchTypeSelectorView
+      character={this.state.character}
+      onChange={this.handleFilterSelect}
+      />
+      </div>
+      <div>
+      <div>
+      <FilteredSelectorView
+      filteredType={this.state.filter}
+      filteredOptions={this.state.filterOptionResults}
+      onChange={this.handleFilteredOptionSelector}
+      />
+      </div>
+      <CharacterView
+      filter={this.state.filter}
+      characterViewStatus={this.state.characterViewStatus}
+      character={this.state.character}
+      eventComics={this.state.resultComicsEvent}
+      storiesComics={this.state.resultComicsStory}
+      seriesComics={this.state.resultComicsSeries}/>
+      </div>
+      </React.Fragment>
+    )
+  }
+}
 
-      export default New
+export default New
