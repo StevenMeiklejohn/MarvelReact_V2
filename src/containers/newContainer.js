@@ -68,7 +68,12 @@ class New extends React.Component{
 
   componentDidMount(){
     this.get_all_characters_from_db();
+
+    // #####################################
+    // if getting data from API use the function below amd comment out the function above.
     // this.get_all_characters();
+    // #####################################
+
 
   }
 
@@ -97,7 +102,11 @@ class New extends React.Component{
 
   handleCharacterSelector(event){
     // this.backupSingleCharacter();
+
+    // ###########################
+    // For use when backing up from API.
     // this.backupCharacters();
+    // ###########################
     this.search_for_character(event.target.value)
   }
 

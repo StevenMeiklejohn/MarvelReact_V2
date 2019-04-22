@@ -32,7 +32,9 @@ class CharacterSelector extends React.Component{
     console.log("Character props", this.props.characters);
 
 
-
+// #############################################
+// Use this code when fetching data from the API
+// #############################################
     // this.flattenCharactersObject(characters);
     // let flatChars = [];
     // let orderedChars = [];
@@ -58,7 +60,13 @@ class CharacterSelector extends React.Component{
     //   this.sorted_options = ordered_options
     //   console.log("sorted options", this.sorted_options);
     // }
+    // #####################################################
+    // #####################################################
 
+
+    // #########################################
+    // Use this code if using data from db.
+    // ########################################
     let flatChars = [];
     if(characters.length === 2){
       for(var element of characters){
@@ -86,40 +94,44 @@ class CharacterSelector extends React.Component{
         this.sorted_options = ordered_options
         console.log("sorted options", this.sorted_options);
       }
+      // ##############################################
+      // ##############################################
 
 
 
 
-    
 
 
+      // ###########################################
+      // Code used for testing data fetch from DB.
+      // ###########################################
 
-    //
     // if(characters.length === 2){
     //   characters.forEach((element._embedded.marvelCharacters) => {
     //     console.log("element._embedded.marvelCharacters", element._embedded.marvelCharacters);
-        // console.log("First loop element._embedded.marvelCharacters", element._embedded.marvelCharacters);
-        // characters.forEach((element._embedded) =>{
-        //   console.log("Second loop element ._embedded", element2._embedded);
-        //   characters.forEach((element3) => {
-        //   console.log("Third loop element ._embedded.marvelCharacters", element3._embedded.marvelCharacters);
-        //   })
-        // })
+    //     console.log("First loop element._embedded.marvelCharacters", element._embedded.marvelCharacters);
+    //     characters.forEach((element._embedded) =>{
+    //       console.log("Second loop element ._embedded", element2._embedded);
+    //       characters.forEach((element3) => {
+    //       console.log("Third loop element ._embedded.marvelCharacters", element3._embedded.marvelCharacters);
+    //       })
+    //     })
     //   })
     // }
 
-
-    //   for(var characterObject in characters){
-    //     console.log("characterObject", characterObject);
-    //      for(var characterArray in characterObject){
-    //        console.log("characterArray", characterArray);
-    //           for(var character in characterArray){
-    //             flatChars.push(character);
-    //           }
-    //       }
-    //   }
-    //   this.setState({characters: flatChars}, console.log("data formatting complete"));
+      // for(var characterObject in characters){
+      //   console.log("characterObject", characterObject);
+      //    for(var characterArray in characterObject){
+      //      console.log("characterArray", characterArray);
+      //         for(var character in characterArray){
+      //           flatChars.push(character);
+      //         }
+      //     }
+      // }
+      // this.setState({characters: flatChars}, console.log("data formatting complete"));
     // }
+    // ###############################################
+    // ###############################################
 
 
     return(
