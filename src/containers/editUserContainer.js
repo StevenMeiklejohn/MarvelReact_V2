@@ -15,7 +15,7 @@ class EditUserContainer extends React.Component{
   handleUserUpdate(user){
     console.log("handleUserPost called", user);
     const request = new Request();
-    request.put('/api/users/' + this.props.id, user).then(()=> {
+    request.put('http://localhost:8080/api/users/' + this.props.id, user).then(()=> {
       window.location = '/users'
     })
 

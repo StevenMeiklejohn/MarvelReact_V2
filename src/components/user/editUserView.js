@@ -13,7 +13,7 @@ class EditUserView extends React.Component{
 
   componentDidMount(){
     const request = new Request();
-    request.get("/api/users/" + this.props.id).then((data) => {
+    request.get("http://localhost:8080/api/users/" + this.props.id).then((data) => {
       this.setState({user: data})
     })
   }
