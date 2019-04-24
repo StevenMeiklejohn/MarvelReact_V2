@@ -16,6 +16,8 @@ class Account extends React.Component{
     })
   }
 
+
+
   directToEditForm(){
     window.location = '/users/edit/' + this.props.userInfo.id;
   }
@@ -35,6 +37,8 @@ class Account extends React.Component{
     <div className="loginButtonDiv">
     <button className ="loginButton" onClick={this.handleDelete}>Delete</button>
     <button className ="loginButton" onClick={this.directToEditForm}>Edit</button>
+    <button className ="loginButton" onClick={this.props.handleLogout}>Logout</button>
+
 
     </div>
 

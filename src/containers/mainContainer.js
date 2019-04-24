@@ -24,6 +24,7 @@ class MainContainer extends React.Component{
     }
     this.loginUser = this.loginUser.bind(this);
     this.setloggedInUserInfo = this.setloggedInUserInfo.bind(this);
+    this.logoutUser = this.logoutUser.bind(this);
   }
 
 
@@ -36,6 +37,11 @@ class MainContainer extends React.Component{
   setloggedInUserInfo(info){
     console.log("setLogedInUserInfo function called", info);
     this.setState({loggedInUser: info})
+  }
+
+  logoutUser(){
+    this.setState({loggedInUserName: null}, this.setState({loggedInUser: null}))
+    window.location = "/";
   }
 
 
@@ -58,10 +64,18 @@ class MainContainer extends React.Component{
       return(
         <Account
         userInfo={this.state.loggedInUser}
+        handleLogout={this.logoutUser}
         {...props}
         />
       );
     }
+
+    // if(this.state.loggedInUser){
+    //   var loginStatus = "/logout"
+    // }else{
+    //   loginStatus = "/login"
+    // }
+
 
     return(
       <Router>

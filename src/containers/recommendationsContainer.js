@@ -14,7 +14,7 @@ class RecommendationsContainer extends React.Component{
   componentDidMount(){
     console.log(this.props.user);
     const request = new Request();
-    request.get("/api/recommendations").then((data) => {
+    request.get("http://localhost:8080/api/recommendations").then((data) => {
       this.setState({recommendations: data._embedded.recommendations})
     })
   }
