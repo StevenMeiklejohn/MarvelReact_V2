@@ -25,8 +25,8 @@ class Home extends React.Component{
 
 
     this.marvel = api.createClient({
-      publicKey: "1a11ffc2c79394bdd4e7a7b8d97c43a9",
-      privateKey: "403c5f3406be455684061d92266dea467b382bdc"
+      publicKey: "7e71a3c8565f24ec32e5c6da8cb7fc01",
+      privateKey: "6bf94a0a99016c0933e501fa4f387d2435acccb3"
     });
   }
 
@@ -53,14 +53,14 @@ class Home extends React.Component{
 
   getRandomComic(){
     // keys for API
-    var PRIV_KEY = "403c5f3406be455684061d92266dea467b382bdc";
-    var API_KEY = "1a11ffc2c79394bdd4e7a7b8d97c43a9";
+    var PRIV_KEY = "6bf94a0a99016c0933e501fa4f387d2435acccb3";
+    var API_KEY = "7e71a3c8565f24ec32e5c6da8cb7fc01";
     // create new date object
     var ts = new Date().getTime();
     // generate random in between 1 and 50000
     var randomNumber = this.getRandomInt(1, 10000);
     // target api
-    var url = "http://gateway.marvel.com:80/v1/public/comics/" + randomNumber + "?apikey=1a11ffc2c79394bdd4e7a7b8d97c43a9";
+    var url = "http://gateway.marvel.com:80/v1/public/comics/" + randomNumber + "?apikey=7e71a3c8565f24ec32e5c6da8cb7fc01";
     // create a hash using md5 function
     var hash = this.md5(ts + PRIV_KEY + API_KEY);
     // modify url with hash

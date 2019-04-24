@@ -9,8 +9,8 @@ class CreatorDetail extends React.Component{
     // if(!this.props.comic){
     //   return null
     // }
-    console.log("Creator Detail name", this.props.name);
-    console.log("Creator Detail role", this.props.role);
+    // console.log("Creator Detail name", this.props.name);
+    // console.log("Creator Detail role", this.props.role);
 
     return(
       <React.Fragment>

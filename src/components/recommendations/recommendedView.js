@@ -14,13 +14,13 @@ class RecommendedView extends React.Component{
 
     const recObjectsSent = this.props.recommendations.map((object) => {
       if(object.recommendedById === this.props.user.id){
-      return <RecommendationViewSent recommendation={object} user={this.props.user}/>
+      return <RecommendationViewSent key={object.id} recommendation={object} user={this.props.user}/>
     }
     })
 
     const recObjectsReceived = this.props.recommendations.map((object) => {
       if(object.recommendedForId === this.props.user.id){
-      return <RecommendationViewReceived recommendation={object} user={this.props.user}/>
+      return <RecommendationViewReceived key={object.id} recommendation={object} user={this.props.user}/>
     }
     })
 

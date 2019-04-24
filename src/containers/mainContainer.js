@@ -109,8 +109,9 @@ class MainContainer extends React.Component{
       <Route path="/users" component={UsersContainer}/>
 
       <Route exact path="/comic/:id" render = {(props) =>{
+        const userProp = this.state.loggedInUser;
         const id = props.match.params.id;
-        return <SingleComicContainer id = {id} />
+        return <SingleComicContainer id = {id} user = {userProp} />
       }}
       />
       </Switch>

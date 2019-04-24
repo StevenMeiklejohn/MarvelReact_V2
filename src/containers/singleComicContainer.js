@@ -13,8 +13,8 @@ class SingleComicContainer extends Component {
     super(props);
     this.state = {comic: null};
     this.marvel = api.createClient({
-      publicKey: "1a11ffc2c79394bdd4e7a7b8d97c43a9",
-      privateKey: "403c5f3406be455684061d92266dea467b382bdc"
+      publicKey: "7e71a3c8565f24ec32e5c6da8cb7fc01",
+      privateKey: "6bf94a0a99016c0933e501fa4f387d2435acccb3"
     });
     this.search_for_comic = this.search_for_comic.bind(this);
     // this.handleDelete = this.handleDelete.bind(this);
@@ -67,7 +67,7 @@ class SingleComicContainer extends Component {
        <SingleComicDetails comic = {this.state.comic}/>
        </div>
        <div>
-        <SingleComicUserOptions comic = {this.state.comic}/>
+        <SingleComicUserOptions comic = {this.state.comic} user = {this.props.user}/>
         </div>
 
      </React.Fragment>

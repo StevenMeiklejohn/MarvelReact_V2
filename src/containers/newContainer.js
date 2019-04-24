@@ -58,8 +58,8 @@ class New extends React.Component{
 
 
     this.marvel = api.createClient({
-      publicKey: "4a03954b8fa5228dc3041687a73e9dcf",
-      privateKey: "48ffbbc1a2081d47902dbcbee9544ae840cd5f2a"
+      publicKey: "7e71a3c8565f24ec32e5c6da8cb7fc01",
+      privateKey: "6bf94a0a99016c0933e501fa4f387d2435acccb3"
 
       // publicKey: "1a11ffc2c79394bdd4e7a7b8d97c43a9",
       // privateKey: "403c5f3406be455684061d92266dea467b382bdc"
