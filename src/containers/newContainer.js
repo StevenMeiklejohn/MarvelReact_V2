@@ -26,6 +26,7 @@ class New extends React.Component{
     super(props);
     this.state = {
       characters:[],
+      loadedCharacters:[],
       character: null,
       selectedComic: null,
       filter: null,
@@ -67,7 +68,11 @@ class New extends React.Component{
   }
 
   componentDidMount(){
+    if(this.state.loadedCharacters.length > 1){
+      this.setState({characters: this.state.loadedCharacters}, console.log("characters loaded in-app"))
+    }else{
     this.get_all_characters_from_db();
+  }
 
     // #####################################
     // if getting data from API use the function below amd comment out the function above.
@@ -94,7 +99,7 @@ class New extends React.Component{
     promises.push(request.get('http://localhost:8080/api/marvelCharacters?page=1&size=1425'))
     Promise.all(promises)
     .then((data) => {
-      this.setState({characters: data}, console.log("Get characters from db completed", data));
+      this.setState({characters: data}, this.setState({loadedCharacters: data}, console.log("Get characters from db completed", data)));
     })
   }
 

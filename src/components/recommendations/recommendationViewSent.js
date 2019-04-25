@@ -18,6 +18,7 @@ class RecommendationViewSent extends React.Component{
     });
     this.search_for_comic = this.search_for_comic.bind(this);
     this.getRecipient = this.getRecipient.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   componentDidMount(){
@@ -45,6 +46,13 @@ class RecommendationViewSent extends React.Component{
     })
   }
 
+  handleRemove(){
+    const request = new Request();
+    const url = "http://localhost:8080/api/recommendations/" + this.props.recommendation.id;
+    request.delete(url).then(()=> {
+      window.location = '/recommendations'})
+  }
+
 
 
 
@@ -67,6 +75,9 @@ class RecommendationViewSent extends React.Component{
       </div>
         <div className="recommendationViewImage">
           <img className="recommendationThumbnail" src={this.state.comic.images[0].path + "." + this.state.comic.images[0].extension} />
+        </div>
+        <div className="removeButtonDiv">
+            <button className ="loginButton" onClick={this.handleRemove}>Remove</button>
         </div>
       </div>
     )
