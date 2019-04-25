@@ -33,7 +33,7 @@ class Navbar extends React.Component{
             <Link style={{ textDecoration: 'none', color:'white' }} to="/">Home</Link>
           </li>
           <li>
-            <Link style={{ textDecoration: 'none', color:'white' }} to="/login">Login</Link>
+            <Link style={{ textDecoration: 'none', color:'white' }} to="/logout">Logout</Link>
           </li>
           <li>
             <Link style={{ textDecoration: 'none', color:'white' }} to="/new">New</Link>

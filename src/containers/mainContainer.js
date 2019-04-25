@@ -27,6 +27,16 @@ class MainContainer extends React.Component{
     this.logoutUser = this.logoutUser.bind(this);
   }
 
+  componentDidMount(){
+    if(localStorage.getItem('loggedInUserName') != null){
+    var retrievedObject = localStorage.getItem('loggedInUser');
+    var parsedObject = JSON.parse(retrievedObject);
+    console.log('parsedObject', parsedObject);
+    this.setState({loggedInUserName: parsedObject.userName}, this.setState({loggedInUser: parsedObject}))
+  this.setState({loggedInUser: parsedObject})
+  }
+}
+
 
   loginUser(loggedInUser){
     // console.log("Main container loginUser called");
@@ -36,10 +46,12 @@ class MainContainer extends React.Component{
 
   setloggedInUserInfo(info){
     console.log("setLogedInUserInfo function called", info);
+    localStorage.setItem('loggedInUser', JSON.stringify(info));
     this.setState({loggedInUser: info})
   }
 
   logoutUser(){
+    localStorage.removeItem('loggedInUser');
     this.setState({loggedInUserName: null}, this.setState({loggedInUser: null}))
     window.location = "/";
   }
@@ -85,6 +97,11 @@ class MainContainer extends React.Component{
       </div>
       <Switch>
       <Route exact path="/" component={Home} />
+      <Route path="/logout" render={() => {
+                      this.logoutUser();
+                      return <Home />;
+                    }
+                  }/>
       <Route path="/login" render={MyLoginContainer}/>
       <Route path="/account" render={MyAccountContainer} />
       <Route path="/new" component={New} />

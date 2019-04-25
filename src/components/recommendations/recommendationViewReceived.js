@@ -10,7 +10,8 @@ class RecommendationViewReceived extends React.Component{
     this.state = {
       comic: null,
       sender: null,
-      recipient: null
+      recipient: null,
+      redirect: false
     }
     this.marvel = api.createClient({
       publicKey: "7e71a3c8565f24ec32e5c6da8cb7fc01",
@@ -56,6 +57,7 @@ class RecommendationViewReceived extends React.Component{
     request.delete(url).then(()=> {
       this.forceUpdate()})
   }
+
 
   render(){
     if(!this.props.recommendation || !this.state.comic || !this.state.sender){

@@ -26,7 +26,6 @@ class New extends React.Component{
     super(props);
     this.state = {
       characters:[],
-      loadedCharacters:[],
       character: null,
       selectedComic: null,
       filter: null,
@@ -68,9 +67,7 @@ class New extends React.Component{
   }
 
   componentDidMount(){
-    if(this.state.loadedCharacters.length > 1){
-      this.setState({characters: this.state.loadedCharacters}, console.log("characters loaded in-app"))
-    }else{
+
     this.get_all_characters_from_db();
   }
 
@@ -80,7 +77,7 @@ class New extends React.Component{
     // #####################################
 
 
-  }
+  
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
