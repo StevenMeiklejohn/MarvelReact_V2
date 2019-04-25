@@ -9,6 +9,14 @@ class CharacterView extends React.Component {
 
   render(){
 
+    if(this.props.filterSelectorFetching){
+      return(
+        <div className="characterView">
+        <p class="animated infinite lightSpeedIn delay-2s">Fetching.....</p>
+        </div>
+      )
+    }
+
     if(this.props.character && this.props.characterViewStatus === "character"){
       // console.log(this.props.character);
       return(

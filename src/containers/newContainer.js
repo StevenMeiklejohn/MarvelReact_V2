@@ -34,7 +34,8 @@ class New extends React.Component{
       resultComicsEvent: [],
       resultComicsStory: [],
       resultComicsSeries: [],
-      characterViewStatus: null
+      characterViewStatus: null,
+      filterSelectorFetching:false
     }
     this.get_characters = this.get_characters.bind(this);
     this.get_all_characters = this.get_all_characters.bind(this);
@@ -54,6 +55,7 @@ class New extends React.Component{
     this.backupCharacters = this.backupCharacters.bind(this);
     this.backupSingleCharacter = this.backupSingleCharacter.bind(this);
     this.get_all_characters_from_db = this.get_all_characters_from_db.bind(this);
+    this.toggleFilterSelectorFetching = this.toggleFilterSelectorFetching.bind(this);
 
 
 
@@ -77,7 +79,7 @@ class New extends React.Component{
     // #####################################
 
 
-  
+
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -254,6 +256,7 @@ class New extends React.Component{
   };
 
   getIssuesInStory(story_id, num_to_get, offset){
+    this.setState({filterSelectorFetching: true});
     // console.log("Get issues in story called. story_id =", story_id );
     var PRIV_KEY = "403c5f3406be455684061d92266dea467b382bdc";
     var API_KEY = "1a11ffc2c79394bdd4e7a7b8d97c43a9";
@@ -282,19 +285,21 @@ class New extends React.Component{
         // console.log("getIssuesInStory parsed response", marvel);
         this.setState({resultComicsStory: marvel.data.results});
         this.setState({characterViewStatus: "story"});
+        this.setState({filterSelectorFetching: false});
       }
     }
     request.send();
   };
 
   getIssuesInEvent(event_id, num_to_get, index_offset){
+    this.setState({filterSelectorFetching: true});
     let comics = this.state.resultComicsEvent;
     // console.log(event_id);
     this.marvel.events.comics(event_id, num_to_get, index_offset)
     .then(function(res){
       comics.push(res.data);
       // console.log(res.data);
-      this.setState({resultComicsEvent: comics}, this.setState({characterViewStatus: "event"}));
+      this.setState({resultComicsEvent: comics}, this.setState({characterViewStatus: "event"}, this.setState({filterSelectorFetching: false})));
       // this.setState({character: null});
     }.bind(this))
     .fail(console.error)
@@ -304,13 +309,14 @@ class New extends React.Component{
 
 
   getIssuesInSeries(series_id, num_to_get, index_offset){
+    this.setState({filterSelectorFetching: true});
     let comics = this.state.resultComicsSeries;
     // console.log(event_id);
     this.marvel.series.comics(series_id, num_to_get, index_offset)
     .then(function(res){
       comics.push(res.data);
       // console.log(res.data);
-      this.setState({resultComicsSeries: comics}, this.setState({characterViewStatus: "series"}));
+      this.setState({resultComicsSeries: comics}, this.setState({characterViewStatus: "series"}, this.setState({filterSelectorFetching: false})));
       // this.setState({character: null});
     }.bind(this))
     .fail(console.error)
@@ -327,6 +333,7 @@ class New extends React.Component{
   }
 
   handleFilteredOptionSelector(event){
+    this.setState({filterSelectorFetching: true})
     if(this.state.filter === "stories"){
       // console.log(event.target.value);
       this.setState({resultComicsStory: []}, this.getIssuesInStory(event.target.value, 100, 0));
@@ -355,6 +362,11 @@ class New extends React.Component{
   }
 
 
+  toggleFilterSelectorFetching(){
+    this.setState({filterSelectorFetching: false})
+  }
+
+
   render(){
     return(
       <React.Fragment>
@@ -376,10 +388,12 @@ class New extends React.Component{
       filteredType={this.state.filter}
       filteredOptions={this.state.filterOptionResults}
       onChange={this.handleFilteredOptionSelector}
+      toggleFilterSelectorReady={this.toggleFilterSelectorReady}
       />
       </div>
       <CharacterView
       filter={this.state.filter}
+      filterSelectorFetching={this.state.filterSelectorFetching}
       characterViewStatus={this.state.characterViewStatus}
       character={this.state.character}
       eventComics={this.state.resultComicsEvent}
