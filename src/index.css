@@ -23,6 +23,25 @@ body {
   overflow: auto;
 }
 
+.holding{
+  display: inline-block;
+  float: left;
+  width: 360px;
+  margin-left: 50px;
+  height: 500px;
+  border: 5px solid white;
+
+  background-color: white;
+
+  text-align: center;
+}
+
+.holding img{
+
+
+  overflow: hidden;
+}
+
 .characterSelector{
   display: inline-block;
   float: left;

@@ -13,6 +13,9 @@ class CharacterView extends React.Component {
       return(
         <div className="characterView">
         <p class="animated infinite lightSpeedIn delay-2s">Fetching.....</p>
+        <h6>We are fetching the requested issues</h6>
+        <h6>This make take a minute</h6>
+        <h6>Please hang in there</h6>
         </div>
       )
     }
@@ -97,6 +100,9 @@ class CharacterView extends React.Component {
           return(
             <div className="characterView">
             <p class="animated infinite lightSpeedIn delay-2s">Fetching.....</p>
+            <h6>We are fetching a metric shit-tonne of data from the Marvel API</h6>
+            <h6>This might take a minute</h6>
+            <h6>Please hang in there</h6>
             </div>
           )
         }

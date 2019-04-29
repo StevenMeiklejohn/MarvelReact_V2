@@ -47,16 +47,10 @@ class SingleComicContainer extends Component {
     .done();
   }
 
-  // handleDelete(id){
-  //   const request = new Request();
-  //   const url = '/api/pirates/' + id;
-  //   request.delete(url).then(() => {
-  //     window.location = '/pirates'
-  //   })
-  // }
 
 
   render(){
+    if(this.props.userProp){
 
     return (
       <React.Fragment>
@@ -72,7 +66,15 @@ class SingleComicContainer extends Component {
 
      </React.Fragment>
     )
+  } else {
+    return(
+    <div>
+      <h4> You must be logged in to send a reccomendation </h4>
+      <h4> Please login or create an account. </h4>
+    </div>
+  )
   }
+}
 }
 
 export default SingleComicContainer;

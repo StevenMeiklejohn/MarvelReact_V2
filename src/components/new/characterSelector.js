@@ -1,7 +1,10 @@
 import React from 'react';
+import thanosGif from './../../images/thanos.gif';
+import comicGif from './../../images/comicCrop.gif';
 // import Request from './../../helpers/request'
 const _ = require('lodash');
 // const writeFileP = require("write-file-p");
+
 
 
 class CharacterSelector extends React.Component{
@@ -21,10 +24,10 @@ class CharacterSelector extends React.Component{
   render(){
     console.log("Character Selector character props", this.props.characters);
     // if(this.props.characters.length < 10){
-    if(!this.props.characters.length === 2){
+    if(this.props.characters.length < 2){
       return(
-        <div className="characterSelector">
-          <h6 class="animated infinite lightSpeedIn delay-2s">Fetching Characters..</h6>
+        <div className="holding">
+          <img src={comicGif} />
         </div>
       )
     }

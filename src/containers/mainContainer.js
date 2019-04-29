@@ -122,6 +122,7 @@ class MainContainer extends React.Component{
       />
 
       <Route exact path="/users/:id" render = {(props) =>{
+        const userProp = this.state.loggedInUser;
         const id = props.match.params.id;
         return <SingleUserContainer id = {id} />
       }}
