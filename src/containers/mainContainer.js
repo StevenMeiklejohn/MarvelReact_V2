@@ -20,11 +20,13 @@ class MainContainer extends React.Component{
     super(props);
     this.state = {
       loggedInUserName: null,
-      loggedInUser: null
+      loggedInUser: null,
+      loginFail: false
     }
     this.loginUser = this.loginUser.bind(this);
     this.setloggedInUserInfo = this.setloggedInUserInfo.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
+    this.loginFail = this.loginFail.bind(this);
   }
 
   componentDidMount(){
@@ -42,6 +44,10 @@ class MainContainer extends React.Component{
     // console.log("Main container loginUser called");
     // console.log("Logged in user being passed", loggedInUser);
     this.setState({loggedInUserName: loggedInUser})
+  }
+
+  loginFail(){
+    this.setState({loginFail: true})
   }
 
   setloggedInUserInfo(info){
@@ -66,6 +72,8 @@ class MainContainer extends React.Component{
         loginUser={this.loginUser}
         loginComplete={this.state.loggedInUserName}
         setloggedInUserInfo={this.setloggedInUserInfo}
+        setLoginFail={this.loginFail}
+        loginFail={this.state.loginFail}
         {...props}
         />
       );

@@ -64,6 +64,7 @@ class FilteredSelector extends React.Component{
       <div className="filteredSelector">
         <h6>Select filtered options</h6>
       <select onChange={this.props.onChange}>
+      <option> Options....</option>
       {this.sorted_options}
       </select>
       </div>

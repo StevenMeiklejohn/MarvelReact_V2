@@ -19,6 +19,8 @@ class LoginContainer extends React.Component{
     this.checkUserDetails = this.checkUserDetails.bind(this);
     this.setRedirect = this.setRedirect.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
+    this.setRedirectLoginFail = this.setRedirectLoginFail.bind(this);
+    this.renderRedirectLoginFail = this.renderRedirectLoginFail.bind(this);
   }
 
   setRedirect(){
@@ -32,6 +34,17 @@ class LoginContainer extends React.Component{
     }
   }
 
+  setRedirectLoginFail(){
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirectLoginFail(){
+    if (this.state.redirect) {
+      return <Redirect to='/login' />
+    }
+  }
+
   handleUserPost(user){
     console.log("handleUserPost called", user);
     const request = new Request();
@@ -42,14 +55,10 @@ class LoginContainer extends React.Component{
   }
 
   checkUserDetails(){
-    // console.log("Check user details called");
-    // console.log("Retrived password", this.state.detailsRetrieved.password);
-    // console.log("Submitted password", this.state.detailsSubmitted.password);
     if(this.state.detailsRetrieved.password === this.state.detailsSubmitted.password){
-      // console.log("Success you are logged in!");
       this.props.loginUser(this.state.detailsSubmitted.userName);
-      // console.log("loginContainer props", this.props.route);
-      // this.props.setUser(this.state.detailsSubmitted.userName);
+    }else{
+      this.props.setLoginFail();
     }
   }
 
@@ -78,6 +87,20 @@ class LoginContainer extends React.Component{
         <div className="loginButtonDiv">
           {this.renderRedirect()}
           <button className ="loginButton" onClick={this.setRedirect}>Go!</button>
+        </div>
+        </React.Fragment>
+      )
+    }
+
+    if(this.props.loginFail){
+      return(
+        <React.Fragment>
+        <div>
+        <h4> Sorry </h4>
+        <h4> Your user name or password appears to be incorrect </h4>
+        </div>
+        <div className="loginButtonDiv">
+          <Login handleUserPost={this.handleUserPost} handleLogin={this.retrieveUserForChecking}/>
         </div>
         </React.Fragment>
       )
