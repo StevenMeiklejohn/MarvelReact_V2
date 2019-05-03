@@ -2,10 +2,12 @@
   "name": "marvel_api",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/StevenMeiklejohn/MarvelReact_V2",
   "dependencies": {
     "animate.css": "^3.7.0",
     "crypto-js": "^3.1.9-1",
     "file-system": "^2.2.2",
+    "gh-pages": "^2.0.1",
     "lodash": "^4.17.10",
     "marvel-api": "^1.1.0",
     "marvel-comics-api": "^1.3.0",
@@ -25,6 +27,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+   "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -34,7 +38,6 @@
   },
   "browserslist": [
     ">0.2%",
-    "not dead",
     "not ie <= 11",
     "not op_mini all"
   ]
