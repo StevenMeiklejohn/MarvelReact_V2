@@ -42,7 +42,7 @@ class New extends React.Component{
     this.search_for_character = this.search_for_character.bind(this);
     this.handleCharacterSelector = this.handleCharacterSelector.bind(this);
     this.handleFilterSelect = this.handleFilterSelect.bind(this);
-    this.handleEventSelector = this.handleEventSelector.bind(this);
+    // this.handleEventSelector = this.handleEventSelector.bind(this);
     this.handleFilteredOptionSelector = this.handleFilteredOptionSelector.bind(this);
     this.getIssuesInEvent = this.getIssuesInEvent.bind(this);
     this.get_all_events = this.get_all_events.bind(this);
@@ -182,7 +182,8 @@ class New extends React.Component{
   }
 
   async get_all_events() {
-    this.setState({filterOptionResults: []}, this.get_events(this.state.character.id, 50, 0));
+    this.setState({filterSelectorFetching: true});
+    this.setState({filterOptionResults: []}, this.get_events(this.state.character.id, 100, 0));
   }
 
   get_events(id, num_to_get, index_offset){
@@ -192,13 +193,15 @@ class New extends React.Component{
     .then(function(res){
       events.push(res.data);
       console.log("Get events returned data", res.data);
-      this.setState({filterOptionResults: events})
+      this.setState({filterOptionResults: events});
+      this.setState({filterSelectorFetching: false});
     }.bind(this))
     .fail(console.error)
     .done();
   }
 
   async get_all_series() {
+    this.setState({filterSelectorFetching: true});
     this.setState({filterOptionResults: []}, this.get_series(this.state.character.id, 50, 0));
   }
 
@@ -210,13 +213,14 @@ class New extends React.Component{
       series.push(res.data);
       // console.log(res.data);
       this.setState({filterOptionResults: series})
+      this.setState({filterSelectorFetching: false});
     }.bind(this))
     .fail(console.error)
     .done();
   }
 
   async get_all_stories() {
-    // console.log("Get all stories called");
+    this.setState({filterSelectorFetching: true});
     this.setState({filterOptionResults: []}, this.get_all_stories_loop);
   }
 
@@ -227,7 +231,8 @@ class New extends React.Component{
       const getStoriesPromise = this.get_stories(this.state.character.id, 100, i)
       promises.push(getStoriesPromise)
     }
-    await Promise.all(promises);
+    await Promise.all(promises)
+    .then(this.setState({filterSelectorFetching: false}));
   }
 
   get_stories(id, num_to_get, index_offset){
@@ -323,14 +328,6 @@ class New extends React.Component{
     .done();
   }
 
-
-
-
-  handleEventSelector(event){
-    // console.log(event.target.value);
-    this.setState({eventComics: []}, this.getIssuesInEvent(event.target.value, 100, 0));
-    // this.setState({character: null}, this.getIssuesInEvent(event.target.value, 100, 0))
-  }
 
   handleFilteredOptionSelector(event){
     this.setState({filterSelectorFetching: true})

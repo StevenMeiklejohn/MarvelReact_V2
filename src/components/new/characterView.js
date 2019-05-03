@@ -12,10 +12,14 @@ class CharacterView extends React.Component {
     if(this.props.filterSelectorFetching){
       return(
         <div className="characterView">
-        <p class="animated infinite lightSpeedIn delay-2s">Fetching.....</p>
-        <h6>We are fetching the requested issues</h6>
-        <h6>This make take a minute</h6>
-        <h6>Please hang in there</h6>
+        <h6>Furiously</h6>
+        <p class="animated infinite lightSpeedIn delay-2s">Fetching</p>
+        <h6>and</h6>
+        <p class="animated infinite lightSpeedIn delay-2s">Filtering</p>
+        <h6>This might take a minute</h6>
+        <h6>Stick around.</h6>
+        <h6>Take a moment to reflect.</h6>
+        <h6>Anybody know any jokes?</h6>
         </div>
       )
     }
@@ -100,9 +104,18 @@ class CharacterView extends React.Component {
           return(
             <div className="characterView">
             <p class="animated infinite lightSpeedIn delay-2s">Fetching.....</p>
-            <h6>We are fetching a metric shit-tonne of data from the Marvel API</h6>
+            <h6>We are fetching a metric shit-tonne of data</h6>
+            <h6>from the Marvel API</h6>
             <h6>This might take a minute</h6>
-            <h6>Please hang in there</h6>
+            <h6>So.....</h6>
+            <h6>Nice weather huh?</h6>
+            <h6>See any good movies lately?</h6>
+            <h6>Won't be long now.</h6>
+            <h6>No really...</h6>
+            <h6>Any....minute....now</h6>
+            <h6>Moments away.</h6>
+            <h6>A blink of an eye.</h6>
+            <h6>Almost imperceptible</h6>
             </div>
           )
         }
