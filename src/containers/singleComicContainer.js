@@ -50,7 +50,7 @@ class SingleComicContainer extends Component {
 
 
   render(){
-    if(this.props.userProp){
+    if(this.props.user){
 
     return (
       <React.Fragment>
