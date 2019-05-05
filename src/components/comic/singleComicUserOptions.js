@@ -66,14 +66,14 @@ class SingleComicUserOptions extends React.Component{
 
     return(
     <div className="singleComicUserOptions">
-    <div className="eventSelector">
+    <div className="recipientSelector">
       <p>Select Recipient</p>
     <select onChange={this.handleUserSelect}>
     <option disabled selected value> -- select a user -- </option>
     {ordered_options}
     </select>
     </div>
-    <div className="loginButtonDiv">
+    <div className="recipientButtonDiv">
     <button className ="loginButton" onClick={this.handleSubmitRec}>Send</button>
     </div>
     </div>

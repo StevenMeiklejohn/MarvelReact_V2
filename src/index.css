@@ -92,6 +92,10 @@ body {
   padding-left: 15px;
 }
 
+.recipientSelector{
+
+}
+
 .searchOptionSelector{
   position: absolute;
   float: left;
@@ -420,5 +424,11 @@ button:hover {
 
   .loginButtonDiv{
     margin: 0 auto;
+    text-align:center;
+  }
+
+  .recipientButtonDiv{
+    margin: 0 auto;
+    margin-top: 100px;
     text-align:center;
   }
