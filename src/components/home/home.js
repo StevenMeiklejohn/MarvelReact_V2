@@ -60,7 +60,7 @@ class Home extends React.Component{
     // generate random in between 1 and 50000
     var randomNumber = this.getRandomInt(1, 10000);
     // target api
-    var url = "http://gateway.marvel.com:80/v1/public/comics/" + randomNumber + "?apikey=7e71a3c8565f24ec32e5c6da8cb7fc01";
+    var url = "http://gateway.marvel.com/v1/public/comics/" + randomNumber + "?apikey=7e71a3c8565f24ec32e5c6da8cb7fc01";
     // create a hash using md5 function
     var hash = this.md5(ts + PRIV_KEY + API_KEY);
     // modify url with hash

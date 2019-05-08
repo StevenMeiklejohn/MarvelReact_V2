@@ -8,7 +8,8 @@ class SingleComicUserOptions extends React.Component{
     super(props);
     this.state = {
       users: null,
-      recipient: null
+      recipient: null,
+      reco_sent:false
     }
     this.handleUserSelect = this.handleUserSelect.bind(this);
     this.handleSubmitRec = this.handleSubmitRec.bind(this);
@@ -39,7 +40,7 @@ class SingleComicUserOptions extends React.Component{
     }
     console.log("handleSubmitRec called", recommendation);
     const request = new Request();
-    request.post("http://localhost:8080/api/recommendations", recommendation).then(console.log("recommendation posted!"))
+    request.post("http://localhost:8080/api/recommendations", recommendation).then(this.setState({reco_sent: true}));
 
   }
 
@@ -48,6 +49,24 @@ class SingleComicUserOptions extends React.Component{
 
 
   render(){
+
+    if(!this.props.user) {
+      return(
+      <div className="singleComicUserOptions">
+        <h6> You must be logged in to send a reccomendation </h6>
+        <h6> Please login or create an account. </h6>
+      </div>
+    )
+    }
+
+    if(this.state.reco_sent){
+      return(
+      <div className="singleComicUserOptions">
+        <h6> Recommendation </h6>
+        <h6> sent </h6>
+      </div>
+    )
+    }
 
 
     if(!this.props.comic||!this.state.users){
