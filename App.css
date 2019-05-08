@@ -1,0 +1,324 @@
+@font-face {
+  font-family: 'Marvel';
+  src: url('./my_fonts/the-fontry_avengeance/AVENGEANCE HEROIC AVENGER BD.ttf') format('truetype');
+}
+
+.nav {
+  border: 4px solid white;
+  border-radius: 15px;
+}
+.nav ul {
+  list-style: none;
+  text-align: center;
+  margin: 0;
+}
+
+.nav li {
+  font-family: 'Marvel', sans-serif;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-bottom: none;
+  height: 50px;
+  line-height:50px;
+  font-size: 0.7em;
+}
+
+.nav a{
+  transition: .5s background-color;
+}
+
+.nav a:hover {
+  background-color: #005f5f;
+
+}
+
+a.active {
+  background-color: #fff;
+  color: #444;
+}
+
+/* @media screen and (min-width: 600px) {
+  .nav li {
+    width: 350px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+} */
+
+  /* Option 1 - Display Inline */
+  .nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+
+
+  h2{
+    font-family: "Marvel", Times, serif;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+  }
+
+  body{
+    font-family: "Marvel", Times, serif;
+    color: white;
+    font-size: 50px;
+    background-color: #e23636;
+  }
+
+  ul {
+    font-family: "Marvel", Times, serif;
+    color: white;
+    font-size: 50px;
+    background-color: #e23636;
+    text-align: center;
+    list-style-type: none;
+  }
+
+  p{
+    font-family: "Marvel", Times, serif;
+    color: white;
+    font-size: 50px;
+    background-color: #e23636;
+    text-align: center;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  h5{
+    text-align: center;
+  }
+
+  h6{
+    text-align: center;
+  }
+
+
+  .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .characterImage {
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid white;
+    border-radius: 15px;
+  }
+
+  .storyCoverImage {
+    height: 480px;
+    width: 300px;
+    display: block;
+    margin-left: 600px;
+    margin-right: auto;
+    border: 4px solid white;
+    border-radius: 15px;
+  }
+
+  .singleComicCoverImageDiv{
+    position: absolute;
+    top: 12%;
+    left: 35%;
+    height: 650px;
+    width:  420px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid white;
+    border-radius: 15px;
+    background-color: white;
+  }
+
+  .singleComicCoverImage{
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .singleComicDetails{
+    position: absolute;
+    top: 12%;
+    left: 3%;
+    height: 650px;
+    width:  420px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid white;
+    border-radius: 15px;
+    overflow: auto;
+  }
+
+  .singleComicUserOptions{
+    position: absolute;
+    top: 12%;
+    left: 67%;
+    height: 650px;
+    width:  420px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid white;
+    border-radius: 15px;
+    overflow: auto;
+
+  }
+
+  .creatorDetail{
+    margin-top: -10px;
+  }
+
+  .my_wrapper{
+    background-color: white;
+  }
+
+  .my_wrapper:hover img{
+    opacity: 0.4;
+  }
+
+  .recommendationThumbnail{
+    height: 100px;
+    width: 70px;
+  }
+
+
+
+
+
+  #logo{
+    text-align: center;
+  }
+
+
+  #button-wrapper {
+    text-align:center;
+  }
+
+  /* Style inputs */
+  input[type=text], select {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+.singleUserDetails{
+
+  height: 220px;
+  width:  60%;
+  display: inline-block;
+  margin: 0 auto;
+  border: 10px solid white;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.recommendationView{
+  height: 140px;
+  border: 5px solid white;
+  border-radius: 25px;
+  width: 50%;
+  margin-top: 10px;
+
+}
+
+
+.recommendationViewText{
+  display: inline-block;
+  margin-top: 10px;
+  width: 60%;
+  text-align: left;
+  float: left;
+}
+
+.recommendationViewImage{
+  display: inline-block;
+  float: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 17px;;
+  margin-bottom: auto;
+  border: 3px solid white;
+
+}
+
+.removeButtonDiv{
+  display: inline-block;
+  float: right;
+  margin-top: 35px;
+  margin-right: 15px;
+}
+
+.recommendationThumbnail{
+
+  display: block;
+
+
+}
+
+.recommendationView h6{
+
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.singleUserDetails h6{
+
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.singleUserDetails h4{
+  height: 220px;
+  line-height: 80px;
+  margin-top: 9px;
+  margin-bottom: -150px;
+}
+
+.editUserDetails{
+
+  height: 220px;
+  width:  60%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  border: 10px solid white;
+  border-radius: 15px;
+  overflow: auto;
+}
+
+.editUserDetails h6{
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.editUserDetails h4{
+  height: 220px;
+  line-height: 80px;
+  margin-top: 7px;
+  margin-bottom: -130px;
+}
+
+.editForm h6{
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
