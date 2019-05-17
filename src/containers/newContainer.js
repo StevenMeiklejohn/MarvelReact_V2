@@ -69,7 +69,7 @@ class New extends React.Component{
   }
 
   componentDidMount(){
-
+    // this.get_all_characters();
     this.get_all_characters_from_db();
   }
 
@@ -94,8 +94,8 @@ class New extends React.Component{
   get_all_characters_from_db(){
     const promises = [];
     const request = new Request();
-    promises.push(request.get('http://localhost:8080/api/marvelCharacters?page=0&size=1425'));
-    promises.push(request.get('http://localhost:8080/api/marvelCharacters?page=1&size=1425'))
+    promises.push(request.get('http://134.209.17.105:8080/api/marvelCharacters?page=0&size=1425'));
+    promises.push(request.get('http://134.209.17.105:8080/api/marvelCharacters?page=1&size=1425'))
     Promise.all(promises)
     .then((data) => {
       this.setState({characters: data}, this.setState({loadedCharacters: data}, console.log("Get characters from db completed", data)));
@@ -127,7 +127,7 @@ class New extends React.Component{
         }
         console.log("New Post Object", newPostObject);
         const request = new Request();
-        postPromises.push(request.post('http://localhost:8080/api/marvelCharacters', newPostObject));
+        postPromises.push(request.post('http://134.209.17.105:8080/api/marvelCharacters', newPostObject));
       }
     }
     Promise.all(postPromises)
@@ -144,7 +144,7 @@ class New extends React.Component{
       thumbnail: character.thumbnail.path + "." + character.thumbnail.extension
     }
     const request = new Request();
-    request.post('http://localhost:8080/api/marvelCharacters', newPostObject)
+    request.post('http://134.209.17.105:8080/api/marvelCharacters', newPostObject)
     .then(console.log("Character posted to db"))
   }
 
@@ -164,7 +164,7 @@ class New extends React.Component{
     .then(function(res){
       chars.push(res.data);
       this.setState({characters: chars});
-      // console.log(this.state.characters);
+      console.log(this.state.characters);
     }.bind(this))
     .fail(console.error)
     .done();
